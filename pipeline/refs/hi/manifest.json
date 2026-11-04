@@ -1,0 +1,134 @@
+[
+ {
+  "file": "f5_2943043_spk1.wav",
+  "source_file": "2943043",
+  "speaker": "spk1",
+  "pitch_class": "low",
+  "f0_hz": 148.1,
+  "snr_db": 21.5,
+  "length_s": 25.8,
+  "gender": "female",
+  "gender_source": "manual (listened)"
+ },
+ {
+  "file": "f6_2974366_spk1.wav",
+  "source_file": "2974366",
+  "speaker": "spk1",
+  "pitch_class": "low",
+  "f0_hz": 163.3,
+  "snr_db": 16.4,
+  "length_s": 26.6,
+  "gender": "female",
+  "gender_source": "manual (listened)"
+ },
+ {
+  "file": "m3_3819695_spk0.wav",
+  "source_file": "3819695",
+  "speaker": "spk0",
+  "pitch_class": "low",
+  "f0_hz": 142.9,
+  "snr_db": 16.1,
+  "length_s": 29.6,
+  "gender": "male",
+  "gender_source": "pitch class, unverified"
+ },
+ {
+  "file": "m4_3852482_spk0.wav",
+  "source_file": "3852482",
+  "speaker": "spk0",
+  "pitch_class": "low",
+  "f0_hz": 149.5,
+  "snr_db": 14.5,
+  "length_s": 27.6,
+  "gender": "male",
+  "gender_source": "pitch class, unverified"
+ },
+ {
+  "file": "f1_2508371_spk1.wav",
+  "source_file": "2508371",
+  "speaker": "spk1",
+  "pitch_class": "high",
+  "f0_hz": 202.5,
+  "snr_db": 31.1,
+  "length_s": 25.9,
+  "gender": "female",
+  "gender_source": "pitch class, unverified"
+ },
+ {
+  "file": "f2_3186725_spk1.wav",
+  "source_file": "3186725",
+  "speaker": "spk1",
+  "pitch_class": "high",
+  "f0_hz": 192.8,
+  "snr_db": 24.9,
+  "length_s": 30.0,
+  "gender": "female",
+  "gender_source": "pitch class, unverified"
+ },
+ {
+  "file": "f3_2404173_spk1.wav",
+  "source_file": "2404173",
+  "speaker": "spk1",
+  "pitch_class": "high",
+  "f0_hz": 207.8,
+  "snr_db": 24.9,
+  "length_s": 29.7,
+  "gender": "female",
+  "gender_source": "pitch class, unverified"
+ },
+ {
+  "file": "f4_2974366_spk0.wav",
+  "source_file": "2974366",
+  "speaker": "spk0",
+  "pitch_class": "high",
+  "f0_hz": 190.5,
+  "snr_db": 24.1,
+  "length_s": 26.4,
+  "gender": "female",
+  "gender_source": "pitch class, unverified"
+ },
+ {
+  "file": "m5_3242986_spk0.wav",
+  "source_file": "3242986",
+  "speaker": "spk0",
+  "pitch_class": "low",
+  "gender": "male",
+  "gender_source": "pitch class, unverified - listen!",
+  "f0_hz": 126.0,
+  "snr_db": 17.7,
+  "length_s": 27.0
+ },
+ {
+  "file": "m6_2448528_spk1.wav",
+  "source_file": "2448528",
+  "speaker": "spk1",
+  "pitch_class": "low",
+  "gender": "male",
+  "gender_source": "pitch class, unverified - listen!",
+  "f0_hz": 127.0,
+  "snr_db": 16.6,
+  "length_s": 28.3
+ },
+ {
+  "file": "m7_3916744_spk1.wav",
+  "source_file": "3916744",
+  "speaker": "spk1",
+  "pitch_class": "low",
+  "gender": "male",
+  "gender_source": "pitch class, unverified - listen!",
+  "f0_hz": 120.3,
+  "snr_db": 12.3,
+  "length_s": 29.7
+ },
+ {
+  "file": "m8_2853413_spk1.wav",
+  "source_file": "2853413",
+  "speaker": "spk1",
+  "pitch_class": "low",
+  "gender": "male",
+  "gender_source": "pitch class, unverified - listen!",
+  "f0_hz": 118.5,
+  "snr_db": 11.8,
+  "length_s": 26.8
+ }
+]

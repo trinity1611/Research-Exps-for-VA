@@ -5,8 +5,10 @@ trinity1611/Voice-Anonymization). This repo: trinity1611/Research-Exps-for-VA. L
 outside OneDrive: laptop `C:\anon-local`, cluster `~/anon-bench`. Setup and cluster usage: `CLAUDE.md`.
 Written 2026-11-04, last updated 2026-11-04.
 
-**Starting a new Claude Code session**: clone this repo inside the pipeline project folder (or set `ANON_ROOT`), open
+**Starting a new Claude Code session**: clone this repo anywhere (the pipeline code it needs is in `pipeline/`), open
 Claude Code in the clone, and say "read README.md and continue with <task>". Section 0 lists what is pending.
+`CLAUDE.md` lists what must exist on the machine besides the repo: the Seed-VC checkout with its model cache, the
+stock DiT checkpoint, the Python environment, and the DISPLACE-M data.
 
 ## 0. Pending at the time of writing (2026-11-04)
 

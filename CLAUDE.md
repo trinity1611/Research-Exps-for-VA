@@ -16,17 +16,24 @@ you work in.
 - The listening-test audio (mental-health study) is sensitive: it is never copied here or published.
 - Reply style: plain, short, answer first; the user often asks yes/no questions and wants the yes/no first.
 
-## Setup the scripts need (not in this repo)
-- The pipeline repo checked out, with `src/anonymize.py`, `configs/pipelines/combined.env` (profile: XLS-R tiny DiT,
-  BigVGAN v2 22 kHz fmax-8k, 30 steps, cfg 1.0, 10 s prompt, 3 s context) and `configs/models/`.
-- Seed-VC checkout (`repos/seed-vc` on the cluster, `C:\anon-local\seed-vc` on the laptop) with `campplus_cn_common.bin`
-  and the Hugging Face cache `checkpoints/hf_cache` (XLS-R 300m, whisper-small, wavlm-base-plus-sv, BigVGAN).
-- Model folder with `seedvc_stock/DiT_uvit_tat_xlsr_ema.pth` (`--models-dir`; cluster `~/anon-bench/models`, laptop `C:\anon-local\exp6_9`).
-- Python env: the Seed-VC conda env (torch 2.7 cu128, torchaudio, transformers 4.46, soundfile, scipy, scikit-learn,
-  pandas, pyarrow, matplotlib). Laptop: `C:\Users\Hp\miniconda3\envs\seedvc\python.exe`; cluster: `~/anon-bench/envs/seedvc`.
-- How the scripts find the pipeline: `ANON_ROOT=<pipeline root>` if set, else the nearest parent folder containing
-  `src/anonymize.py` (the laptop clone sits inside the pipeline project folder; on the cluster the code is copied into
-  `~/anon-bench/<folder>` so the parent is the root).
+## Setup the scripts need
+- `pipeline/` IN THIS REPO is a snapshot of the pipeline code the experiments run on (Voice-Anonymization commit
+  370b5c9, 2026-10-30): `src/anonymize.py` (the engine), `src/common.py`, `src/evaluate.py` (WavLM-SV loader),
+  `configs/pipelines/combined.env` (profile: XLS-R tiny DiT, BigVGAN v2 22 kHz fmax-8k, 30 steps, cfg 1.0, 10 s prompt,
+  3 s context) and `L.env`, `configs/models/*.yml`, `refs/hi` (the 12 reference voices), `env/conda_env.sh`,
+  `env/setup_envs.sh`, `env/stage_models_seedvc.py` (downloads Seed-VC models). Experiments use the combined profile only.
+  If the pipeline repo changes, re-copy these files deliberately and note the commit in `pipeline/README.md`.
+- How the scripts find the pipeline: `<repo>/pipeline` if it holds `src/anonymize.py` (the normal case), else
+  `ANON_ROOT=<pipeline root>`, else the nearest parent folder containing `src/anonymize.py` (the cluster layout, where
+  the folders of this repo are copied into `~/anon-bench` next to its own `src/`).
+- Still needed on each machine, NOT in the repo: the Seed-VC checkout (`repos/seed-vc` on the cluster,
+  `C:\anon-local\seed-vc` on the laptop) with `campplus_cn_common.bin` and its Hugging Face cache
+  `checkpoints/hf_cache` (XLS-R 300m, whisper-small, wavlm-base-plus-sv, BigVGAN); the model folder with
+  `seedvc_stock/DiT_uvit_tat_xlsr_ema.pth` (`--models-dir`; cluster `~/anon-bench/models`, laptop `C:\anon-local\exp6_9`);
+  the Python env (`pipeline/env/setup_envs.sh` builds it: torch 2.7 cu128, torchaudio, transformers 4.46, soundfile,
+  scipy, scikit-learn, pandas, pyarrow, matplotlib; laptop `C:\Users\Hp\miniconda3\envs\seedvc\python.exe`, cluster
+  `~/anon-bench/envs/seedvc`); and the data (below). A machine with internet downloads the public models with
+  `pipeline/env/stage_models_seedvc.py`; the cluster compute nodes are offline, so stage on the login node.
 - Environment for a run: `HF_HUB_CACHE=<seed-vc>/checkpoints/hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`.
 - Data: DISPLACE-M dev set, `data/wav/<id>.wav` (78 two-speaker Hindi conversations, 16 kHz) and reference RTTMs
   `data/rttm/<id>_SPEAKER.rttm`; on the cluster under `~/anon-bench/data`, on the laptop in the pipeline project `data/`.

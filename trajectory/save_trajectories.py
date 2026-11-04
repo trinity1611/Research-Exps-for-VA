@@ -36,7 +36,8 @@ import argparse
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SRC = (Path(os.environ["ANON_ROOT"]) if os.environ.get("ANON_ROOT") else next(d for d in HERE.parents if (d / "src" / "anonymize.py").exists())) / "src"   # pipeline root: ANON_ROOT, or a parent folder
+ROOT = next((d / "pipeline" for d in HERE.parents if (d / "pipeline" / "src" / "anonymize.py").exists()), None) or (Path(os.environ["ANON_ROOT"]) if os.environ.get("ANON_ROOT") else next(d for d in HERE.parents if (d / "src" / "anonymize.py").exists()))   # pipeline copy in this repo, else ANON_ROOT, else a parent folder
+SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
 

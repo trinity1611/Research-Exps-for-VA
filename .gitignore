@@ -15,4 +15,5 @@ data/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-# result files ARE kept: *.csv, *.json, *.png, *.md
+!pipeline/refs/**/*.wav
+# result files ARE kept: *.csv, *.json, *.png, *.md; the pipeline's reference voices are kept too

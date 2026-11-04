@@ -1,0 +1,1796 @@
+{
+ "2006763": {
+  "duration_s": 602.4,
+  "background_rms": 0.008415152192987312,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 242.4,
+    "pitch_class": "high",
+    "speech_s": 380.4,
+    "overlap_free_s": 311.7,
+    "overlap_ratio": 0.181,
+    "snr_db": 17.8
+   },
+   "spk1": {
+    "f0_hz": 186.0,
+    "pitch_class": "high",
+    "speech_s": 152.0,
+    "overlap_free_s": 95.3,
+    "overlap_ratio": 0.373,
+    "snr_db": 21.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2011315": {
+  "duration_s": 630.4,
+  "background_rms": 0.02239026740375211,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 213.3,
+    "pitch_class": "high",
+    "speech_s": 211.9,
+    "overlap_free_s": 92.9,
+    "overlap_ratio": 0.561,
+    "snr_db": 5.5
+   },
+   "spk1": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 339.1,
+    "overlap_free_s": 193.5,
+    "overlap_ratio": 0.429,
+    "snr_db": 1.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2024698": {
+  "duration_s": 624.2,
+  "background_rms": 0.005245969292338169,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 415.4,
+    "overlap_free_s": 162.0,
+    "overlap_ratio": 0.61,
+    "snr_db": 9.9
+   },
+   "spk1": {
+    "f0_hz": 242.4,
+    "pitch_class": "high",
+    "speech_s": 159.2,
+    "overlap_free_s": 28.7,
+    "overlap_ratio": 0.82,
+    "snr_db": 12.8
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2025454": {
+  "duration_s": 1211.7,
+  "background_rms": 0.014834258076650364,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 146.8,
+    "pitch_class": "low",
+    "speech_s": 650.5,
+    "overlap_free_s": 522.0,
+    "overlap_ratio": 0.197,
+    "snr_db": 12.4
+   },
+   "spk1": {
+    "f0_hz": 120.3,
+    "pitch_class": "low",
+    "speech_s": 497.2,
+    "overlap_free_s": 367.0,
+    "overlap_ratio": 0.262,
+    "snr_db": 9.7
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "2051619": {
+  "duration_s": 404.9,
+  "background_rms": 0.025462950822094935,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 250.0,
+    "pitch_class": "high",
+    "speech_s": 196.6,
+    "overlap_free_s": 106.2,
+    "overlap_ratio": 0.46,
+    "snr_db": 11.4
+   },
+   "spk1": {
+    "f0_hz": 205.1,
+    "pitch_class": "high",
+    "speech_s": 164.2,
+    "overlap_free_s": 57.9,
+    "overlap_ratio": 0.647,
+    "snr_db": 12.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2104727": {
+  "duration_s": 613.1,
+  "background_rms": 0.02538160936278867,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 319.7,
+    "overlap_free_s": 238.4,
+    "overlap_ratio": 0.254,
+    "snr_db": 16.3
+   },
+   "spk1": {
+    "f0_hz": 202.5,
+    "pitch_class": "high",
+    "speech_s": 171.8,
+    "overlap_free_s": 99.4,
+    "overlap_ratio": 0.421,
+    "snr_db": 12.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2157582": {
+  "duration_s": 845.8,
+  "background_rms": 0.022112337514074824,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 195.1,
+    "pitch_class": "high",
+    "speech_s": 458.8,
+    "overlap_free_s": 100.6,
+    "overlap_ratio": 0.781,
+    "snr_db": 14.4
+   },
+   "spk1": {
+    "f0_hz": 170.2,
+    "pitch_class": "high",
+    "speech_s": 396.1,
+    "overlap_free_s": 61.1,
+    "overlap_ratio": 0.846,
+    "snr_db": 10.5
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2190472": {
+  "duration_s": 680.5,
+  "background_rms": 0.00542891659710917,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 225.4,
+    "pitch_class": "high",
+    "speech_s": 284.3,
+    "overlap_free_s": 108.5,
+    "overlap_ratio": 0.618,
+    "snr_db": 17.2
+   },
+   "spk1": {
+    "f0_hz": 216.2,
+    "pitch_class": "high",
+    "speech_s": 369.1,
+    "overlap_free_s": 170.0,
+    "overlap_ratio": 0.539,
+    "snr_db": 18.4
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2215699": {
+  "duration_s": 1027.6,
+  "background_rms": 0.01489426213885806,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 397.6,
+    "overlap_free_s": 134.0,
+    "overlap_ratio": 0.663,
+    "snr_db": 18.8
+   },
+   "spk1": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 624.6,
+    "overlap_free_s": 287.2,
+    "overlap_ratio": 0.54,
+    "snr_db": 15.8
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2234940": {
+  "duration_s": 617.1,
+  "background_rms": 0.009200882608656034,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 254.0,
+    "pitch_class": "high",
+    "speech_s": 354.3,
+    "overlap_free_s": 257.6,
+    "overlap_ratio": 0.273,
+    "snr_db": 15.7
+   },
+   "spk1": {
+    "f0_hz": 200.0,
+    "pitch_class": "high",
+    "speech_s": 174.6,
+    "overlap_free_s": 115.1,
+    "overlap_ratio": 0.341,
+    "snr_db": 21.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2246689": {
+  "duration_s": 617.4,
+  "background_rms": 0.005638191365607383,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 231.9,
+    "pitch_class": "high",
+    "speech_s": 356.3,
+    "overlap_free_s": 303.5,
+    "overlap_ratio": 0.148,
+    "snr_db": 22.7
+   },
+   "spk1": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 156.2,
+    "overlap_free_s": 121.7,
+    "overlap_ratio": 0.221,
+    "snr_db": 23.1
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2289810": {
+  "duration_s": 615.9,
+  "background_rms": 0.01355782266720021,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 285.7,
+    "pitch_class": "high",
+    "speech_s": 419.5,
+    "overlap_free_s": 123.1,
+    "overlap_ratio": 0.707,
+    "snr_db": 15.4
+   },
+   "spk1": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 199.7,
+    "overlap_free_s": 37.6,
+    "overlap_ratio": 0.812,
+    "snr_db": 11.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2302262": {
+  "duration_s": 1205.4,
+  "background_rms": 0.021431255124345367,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 152.4,
+    "pitch_class": "low",
+    "speech_s": 467.6,
+    "overlap_free_s": 251.3,
+    "overlap_ratio": 0.463,
+    "snr_db": 10.9
+   },
+   "spk1": {
+    "f0_hz": 231.9,
+    "pitch_class": "high",
+    "speech_s": 644.6,
+    "overlap_free_s": 240.7,
+    "overlap_ratio": 0.627,
+    "snr_db": 10.0
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "2316003": {
+  "duration_s": 623.2,
+  "background_rms": 0.007899617796329356,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 256.0,
+    "overlap_free_s": 217.0,
+    "overlap_ratio": 0.152,
+    "snr_db": 18.0
+   },
+   "spk1": {
+    "f0_hz": 183.9,
+    "pitch_class": "high",
+    "speech_s": 298.0,
+    "overlap_free_s": 271.0,
+    "overlap_ratio": 0.091,
+    "snr_db": 17.5
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2324000": {
+  "duration_s": 626.0,
+  "background_rms": 0.01583621941627878,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 228.6,
+    "pitch_class": "high",
+    "speech_s": 270.7,
+    "overlap_free_s": 123.1,
+    "overlap_ratio": 0.545,
+    "snr_db": 13.5
+   },
+   "spk1": {
+    "f0_hz": 250.0,
+    "pitch_class": "high",
+    "speech_s": 238.7,
+    "overlap_free_s": 104.5,
+    "overlap_ratio": 0.562,
+    "snr_db": 14.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2392867": {
+  "duration_s": 910.6,
+  "background_rms": 0.013826865324696166,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 110.3,
+    "pitch_class": "low",
+    "speech_s": 293.5,
+    "overlap_free_s": 206.0,
+    "overlap_ratio": 0.298,
+    "snr_db": 7.5
+   },
+   "spk1": {
+    "f0_hz": 148.1,
+    "pitch_class": "low",
+    "speech_s": 509.0,
+    "overlap_free_s": 311.6,
+    "overlap_ratio": 0.388,
+    "snr_db": 13.7
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "2404173": {
+  "duration_s": 561.0,
+  "background_rms": 0.006566780654695182,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 210.5,
+    "pitch_class": "high",
+    "speech_s": 232.4,
+    "overlap_free_s": 46.6,
+    "overlap_ratio": 0.8,
+    "snr_db": 16.5
+   },
+   "spk1": {
+    "f0_hz": 207.8,
+    "pitch_class": "high",
+    "speech_s": 329.7,
+    "overlap_free_s": 78.8,
+    "overlap_ratio": 0.761,
+    "snr_db": 24.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2408885": {
+  "duration_s": 721.3,
+  "background_rms": 0.007451706296155509,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 197.5,
+    "pitch_class": "high",
+    "speech_s": 361.1,
+    "overlap_free_s": 357.7,
+    "overlap_ratio": 0.009,
+    "snr_db": 14.0
+   },
+   "spk1": {
+    "f0_hz": 213.3,
+    "pitch_class": "high",
+    "speech_s": 285.7,
+    "overlap_free_s": 285.2,
+    "overlap_ratio": 0.002,
+    "snr_db": 17.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2416907": {
+  "duration_s": 831.4,
+  "background_rms": 0.023012243403908065,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 160.0,
+    "pitch_class": "low",
+    "speech_s": 424.1,
+    "overlap_free_s": 28.4,
+    "overlap_ratio": 0.933,
+    "snr_db": 9.6
+   },
+   "spk1": {
+    "f0_hz": 190.5,
+    "pitch_class": "high",
+    "speech_s": 493.7,
+    "overlap_free_s": 20.7,
+    "overlap_ratio": 0.958,
+    "snr_db": 12.6
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "2448528": {
+  "duration_s": 865.4,
+  "background_rms": 0.012906279453383027,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 124.0,
+    "pitch_class": "low",
+    "speech_s": 487.2,
+    "overlap_free_s": 237.5,
+    "overlap_ratio": 0.513,
+    "snr_db": 15.3
+   },
+   "spk1": {
+    "f0_hz": 127.0,
+    "pitch_class": "low",
+    "speech_s": 377.1,
+    "overlap_free_s": 219.1,
+    "overlap_ratio": 0.419,
+    "snr_db": 16.6
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "2472267": {
+  "duration_s": 606.9,
+  "background_rms": 0.0056649793337066896,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 271.2,
+    "pitch_class": "high",
+    "speech_s": 275.0,
+    "overlap_free_s": 156.5,
+    "overlap_ratio": 0.431,
+    "snr_db": 21.1
+   },
+   "spk1": {
+    "f0_hz": 179.8,
+    "pitch_class": "high",
+    "speech_s": 268.9,
+    "overlap_free_s": 198.9,
+    "overlap_ratio": 0.26,
+    "snr_db": 18.7
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2492647": {
+  "duration_s": 627.0,
+  "background_rms": 0.013259303882726907,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 216.2,
+    "pitch_class": "high",
+    "speech_s": 419.4,
+    "overlap_free_s": 375.4,
+    "overlap_ratio": 0.105,
+    "snr_db": 10.2
+   },
+   "spk1": {
+    "f0_hz": 258.1,
+    "pitch_class": "high",
+    "speech_s": 131.7,
+    "overlap_free_s": 85.1,
+    "overlap_ratio": 0.354,
+    "snr_db": 12.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2507155": {
+  "duration_s": 667.4,
+  "background_rms": 0.00763796117360917,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 219.2,
+    "pitch_class": "high",
+    "speech_s": 190.5,
+    "overlap_free_s": 151.3,
+    "overlap_ratio": 0.206,
+    "snr_db": 17.1
+   },
+   "spk1": {
+    "f0_hz": 225.4,
+    "pitch_class": "high",
+    "speech_s": 340.0,
+    "overlap_free_s": 306.6,
+    "overlap_ratio": 0.098,
+    "snr_db": 13.8
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2508371": {
+  "duration_s": 615.5,
+  "background_rms": 0.004102444995018916,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 235.3,
+    "pitch_class": "high",
+    "speech_s": 338.4,
+    "overlap_free_s": 210.0,
+    "overlap_ratio": 0.38,
+    "snr_db": 23.3
+   },
+   "spk1": {
+    "f0_hz": 202.5,
+    "pitch_class": "high",
+    "speech_s": 237.6,
+    "overlap_free_s": 149.6,
+    "overlap_ratio": 0.371,
+    "snr_db": 31.1
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2532454": {
+  "duration_s": 658.2,
+  "background_rms": 0.0030305159061296853,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 216.2,
+    "pitch_class": "high",
+    "speech_s": 331.7,
+    "overlap_free_s": 87.6,
+    "overlap_ratio": 0.736,
+    "snr_db": 19.0
+   },
+   "spk1": {
+    "f0_hz": 250.0,
+    "pitch_class": "high",
+    "speech_s": 275.8,
+    "overlap_free_s": 125.8,
+    "overlap_ratio": 0.544,
+    "snr_db": 17.5
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2577003": {
+  "duration_s": 606.9,
+  "background_rms": 0.0059038101180229645,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 275.9,
+    "pitch_class": "high",
+    "speech_s": 279.9,
+    "overlap_free_s": 167.8,
+    "overlap_ratio": 0.401,
+    "snr_db": 20.6
+   },
+   "spk1": {
+    "f0_hz": 179.8,
+    "pitch_class": "high",
+    "speech_s": 268.1,
+    "overlap_free_s": 199.2,
+    "overlap_ratio": 0.257,
+    "snr_db": 18.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2627977": {
+  "duration_s": 605.3,
+  "background_rms": 0.01106912294883511,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 250.0,
+    "pitch_class": "high",
+    "speech_s": 336.3,
+    "overlap_free_s": 204.2,
+    "overlap_ratio": 0.393,
+    "snr_db": 16.1
+   },
+   "spk1": {
+    "f0_hz": 170.2,
+    "pitch_class": "high",
+    "speech_s": 191.9,
+    "overlap_free_s": 105.2,
+    "overlap_ratio": 0.452,
+    "snr_db": 17.8
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2643195": {
+  "duration_s": 567.6,
+  "background_rms": 0.019214674457031438,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 258.1,
+    "pitch_class": "high",
+    "speech_s": 241.9,
+    "overlap_free_s": 214.0,
+    "overlap_ratio": 0.115,
+    "snr_db": 13.8
+   },
+   "spk1": {
+    "f0_hz": 266.7,
+    "pitch_class": "high",
+    "speech_s": 229.6,
+    "overlap_free_s": 211.1,
+    "overlap_ratio": 0.081,
+    "snr_db": 11.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2669941": {
+  "duration_s": 600.8,
+  "background_rms": 0.02511194205821953,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 271.2,
+    "pitch_class": "high",
+    "speech_s": 367.7,
+    "overlap_free_s": 186.5,
+    "overlap_ratio": 0.493,
+    "snr_db": 8.0
+   },
+   "spk1": {
+    "f0_hz": 258.1,
+    "pitch_class": "high",
+    "speech_s": 173.0,
+    "overlap_free_s": 60.8,
+    "overlap_ratio": 0.649,
+    "snr_db": 5.7
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2690429": {
+  "duration_s": 995.2,
+  "background_rms": 0.004649268916889243,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 177.8,
+    "pitch_class": "high",
+    "speech_s": 672.4,
+    "overlap_free_s": 36.6,
+    "overlap_ratio": 0.946,
+    "snr_db": 21.9
+   },
+   "spk1": {
+    "f0_hz": 202.5,
+    "pitch_class": "high",
+    "speech_s": 552.4,
+    "overlap_free_s": 23.3,
+    "overlap_ratio": 0.958,
+    "snr_db": 28.0
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2704391": {
+  "duration_s": 623.4,
+  "background_rms": 0.005561270075775095,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 233.0,
+    "overlap_free_s": 100.9,
+    "overlap_ratio": 0.567,
+    "snr_db": 8.9
+   },
+   "spk1": {
+    "f0_hz": 225.4,
+    "pitch_class": "high",
+    "speech_s": 264.5,
+    "overlap_free_s": 138.6,
+    "overlap_ratio": 0.476,
+    "snr_db": 6.8
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2712340": {
+  "duration_s": 618.6,
+  "background_rms": 0.01667278805608585,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 285.7,
+    "pitch_class": "high",
+    "speech_s": 367.3,
+    "overlap_free_s": 242.0,
+    "overlap_ratio": 0.341,
+    "snr_db": 13.0
+   },
+   "spk1": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 214.4,
+    "overlap_free_s": 119.4,
+    "overlap_ratio": 0.443,
+    "snr_db": 11.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2720729": {
+  "duration_s": 663.2,
+  "background_rms": 0.016898019582769125,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 202.5,
+    "pitch_class": "high",
+    "speech_s": 243.5,
+    "overlap_free_s": 53.4,
+    "overlap_ratio": 0.781,
+    "snr_db": 10.7
+   },
+   "spk1": {
+    "f0_hz": 172.0,
+    "pitch_class": "high",
+    "speech_s": 416.1,
+    "overlap_free_s": 109.3,
+    "overlap_ratio": 0.737,
+    "snr_db": 12.8
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2751425": {
+  "duration_s": 647.8,
+  "background_rms": 0.005943084792191857,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 250.0,
+    "pitch_class": "high",
+    "speech_s": 222.7,
+    "overlap_free_s": 134.8,
+    "overlap_ratio": 0.395,
+    "snr_db": 19.5
+   },
+   "spk1": {
+    "f0_hz": 192.8,
+    "pitch_class": "high",
+    "speech_s": 365.6,
+    "overlap_free_s": 230.3,
+    "overlap_ratio": 0.37,
+    "snr_db": 20.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2853413": {
+  "duration_s": 245.0,
+  "background_rms": 0.02579159336919433,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 116.8,
+    "pitch_class": "low",
+    "speech_s": 94.3,
+    "overlap_free_s": 20.8,
+    "overlap_ratio": 0.78,
+    "snr_db": 8.8
+   },
+   "spk1": {
+    "f0_hz": 118.5,
+    "pitch_class": "low",
+    "speech_s": 149.1,
+    "overlap_free_s": 63.4,
+    "overlap_ratio": 0.575,
+    "snr_db": 11.8
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "2859562": {
+  "duration_s": 1208.8,
+  "background_rms": 0.021688861126567715,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 146.8,
+    "pitch_class": "low",
+    "speech_s": 596.5,
+    "overlap_free_s": 411.2,
+    "overlap_ratio": 0.311,
+    "snr_db": 11.8
+   },
+   "spk1": {
+    "f0_hz": 173.9,
+    "pitch_class": "high",
+    "speech_s": 501.5,
+    "overlap_free_s": 300.9,
+    "overlap_ratio": 0.4,
+    "snr_db": 7.5
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "2907609": {
+  "duration_s": 611.0,
+  "background_rms": 0.021710092681511067,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 275.9,
+    "pitch_class": "high",
+    "speech_s": 376.3,
+    "overlap_free_s": 255.0,
+    "overlap_ratio": 0.322,
+    "snr_db": 9.0
+   },
+   "spk1": {
+    "f0_hz": 242.4,
+    "pitch_class": "high",
+    "speech_s": 169.1,
+    "overlap_free_s": 80.4,
+    "overlap_ratio": 0.525,
+    "snr_db": 7.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "2943043": {
+  "duration_s": 614.4,
+  "background_rms": 0.013374883543775867,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 246.2,
+    "pitch_class": "high",
+    "speech_s": 330.1,
+    "overlap_free_s": 127.6,
+    "overlap_ratio": 0.613,
+    "snr_db": 13.3
+   },
+   "spk1": {
+    "f0_hz": 148.1,
+    "pitch_class": "low",
+    "speech_s": 247.2,
+    "overlap_free_s": 113.0,
+    "overlap_ratio": 0.543,
+    "snr_db": 21.5
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "2974366": {
+  "duration_s": 634.4,
+  "background_rms": 0.001195212373735502,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 190.5,
+    "pitch_class": "high",
+    "speech_s": 369.8,
+    "overlap_free_s": 130.3,
+    "overlap_ratio": 0.648,
+    "snr_db": 24.1
+   },
+   "spk1": {
+    "f0_hz": 163.3,
+    "pitch_class": "low",
+    "speech_s": 202.6,
+    "overlap_free_s": 56.1,
+    "overlap_ratio": 0.723,
+    "snr_db": 16.4
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "3002815": {
+  "duration_s": 661.1,
+  "background_rms": 0.004258641506779123,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 225.4,
+    "pitch_class": "high",
+    "speech_s": 236.8,
+    "overlap_free_s": 56.1,
+    "overlap_ratio": 0.763,
+    "snr_db": 23.5
+   },
+   "spk1": {
+    "f0_hz": 207.8,
+    "pitch_class": "high",
+    "speech_s": 388.4,
+    "overlap_free_s": 180.4,
+    "overlap_ratio": 0.536,
+    "snr_db": 18.6
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3017365": {
+  "duration_s": 607.7,
+  "background_rms": 0.004020004682085088,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 266.7,
+    "pitch_class": "high",
+    "speech_s": 385.2,
+    "overlap_free_s": 229.7,
+    "overlap_ratio": 0.404,
+    "snr_db": 23.0
+   },
+   "spk1": {
+    "f0_hz": 228.6,
+    "pitch_class": "high",
+    "speech_s": 185.6,
+    "overlap_free_s": 84.2,
+    "overlap_ratio": 0.546,
+    "snr_db": 20.4
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3116006": {
+  "duration_s": 648.8,
+  "background_rms": 0.0011981436138457761,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 213.3,
+    "pitch_class": "high",
+    "speech_s": 301.4,
+    "overlap_free_s": 127.8,
+    "overlap_ratio": 0.576,
+    "snr_db": 22.4
+   },
+   "spk1": {
+    "f0_hz": 213.3,
+    "pitch_class": "high",
+    "speech_s": 292.9,
+    "overlap_free_s": 75.8,
+    "overlap_ratio": 0.741,
+    "snr_db": 20.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3132933": {
+  "duration_s": 741.7,
+  "background_rms": 0.022540311166682266,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 141.6,
+    "pitch_class": "low",
+    "speech_s": 529.1,
+    "overlap_free_s": 216.9,
+    "overlap_ratio": 0.59,
+    "snr_db": 12.8
+   },
+   "spk1": {
+    "f0_hz": 120.3,
+    "pitch_class": "low",
+    "speech_s": 229.4,
+    "overlap_free_s": 47.3,
+    "overlap_ratio": 0.794,
+    "snr_db": 11.8
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3143841": {
+  "duration_s": 606.2,
+  "background_rms": 0.02787232307681114,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 141.6,
+    "pitch_class": "low",
+    "speech_s": 294.6,
+    "overlap_free_s": 147.8,
+    "overlap_ratio": 0.498,
+    "snr_db": 12.8
+   },
+   "spk1": {
+    "f0_hz": 135.6,
+    "pitch_class": "low",
+    "speech_s": 224.1,
+    "overlap_free_s": 78.8,
+    "overlap_ratio": 0.648,
+    "snr_db": 9.3
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3150359": {
+  "duration_s": 607.1,
+  "background_rms": 0.010961970553167267,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 216.2,
+    "pitch_class": "high",
+    "speech_s": 170.1,
+    "overlap_free_s": 59.0,
+    "overlap_ratio": 0.653,
+    "snr_db": 15.0
+   },
+   "spk1": {
+    "f0_hz": 213.3,
+    "pitch_class": "high",
+    "speech_s": 369.3,
+    "overlap_free_s": 233.9,
+    "overlap_ratio": 0.367,
+    "snr_db": 16.1
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3162464": {
+  "duration_s": 602.2,
+  "background_rms": 0.026341950534941424,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 266.8,
+    "overlap_free_s": 116.9,
+    "overlap_ratio": 0.562,
+    "snr_db": 12.2
+   },
+   "spk1": {
+    "f0_hz": 135.6,
+    "pitch_class": "low",
+    "speech_s": 304.1,
+    "overlap_free_s": 207.6,
+    "overlap_ratio": 0.317,
+    "snr_db": 7.4
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "3186725": {
+  "duration_s": 614.4,
+  "background_rms": 0.004183339007004016,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 266.7,
+    "pitch_class": "high",
+    "speech_s": 316.7,
+    "overlap_free_s": 124.6,
+    "overlap_ratio": 0.607,
+    "snr_db": 20.1
+   },
+   "spk1": {
+    "f0_hz": 192.8,
+    "pitch_class": "high",
+    "speech_s": 203.5,
+    "overlap_free_s": 127.0,
+    "overlap_ratio": 0.376,
+    "snr_db": 24.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3228806": {
+  "duration_s": 671.0,
+  "background_rms": 0.014505506144433128,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 258.1,
+    "pitch_class": "high",
+    "speech_s": 303.0,
+    "overlap_free_s": 21.8,
+    "overlap_ratio": 0.928,
+    "snr_db": 9.1
+   },
+   "spk1": {
+    "f0_hz": 246.2,
+    "pitch_class": "high",
+    "speech_s": 403.4,
+    "overlap_free_s": 9.1,
+    "overlap_ratio": 0.977,
+    "snr_db": 8.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3229783": {
+  "duration_s": 580.2,
+  "background_rms": 0.009537989778080912,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 252.5,
+    "overlap_free_s": 37.0,
+    "overlap_ratio": 0.853,
+    "snr_db": 10.7
+   },
+   "spk1": {
+    "f0_hz": 149.5,
+    "pitch_class": "low",
+    "speech_s": 315.7,
+    "overlap_free_s": 101.8,
+    "overlap_ratio": 0.677,
+    "snr_db": 14.3
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "3242986": {
+  "duration_s": 654.2,
+  "background_rms": 0.014913782316750735,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 126.0,
+    "pitch_class": "low",
+    "speech_s": 334.2,
+    "overlap_free_s": 176.2,
+    "overlap_ratio": 0.473,
+    "snr_db": 17.7
+   },
+   "spk1": {
+    "f0_hz": 145.5,
+    "pitch_class": "low",
+    "speech_s": 249.9,
+    "overlap_free_s": 161.7,
+    "overlap_ratio": 0.353,
+    "snr_db": 15.4
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3303284": {
+  "duration_s": 635.8,
+  "background_rms": 0.020452664392060435,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 231.9,
+    "pitch_class": "high",
+    "speech_s": 267.4,
+    "overlap_free_s": 164.3,
+    "overlap_ratio": 0.386,
+    "snr_db": 18.4
+   },
+   "spk1": {
+    "f0_hz": 207.8,
+    "pitch_class": "high",
+    "speech_s": 314.8,
+    "overlap_free_s": 233.8,
+    "overlap_ratio": 0.257,
+    "snr_db": 18.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3334594": {
+  "duration_s": 835.3,
+  "background_rms": 0.009619299475149343,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 145.5,
+    "pitch_class": "low",
+    "speech_s": 393.2,
+    "overlap_free_s": 299.5,
+    "overlap_ratio": 0.238,
+    "snr_db": 18.0
+   },
+   "spk1": {
+    "f0_hz": 137.9,
+    "pitch_class": "low",
+    "speech_s": 342.1,
+    "overlap_free_s": 169.4,
+    "overlap_ratio": 0.505,
+    "snr_db": 17.8
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3340696": {
+  "duration_s": 618.4,
+  "background_rms": 0.009725819666043276,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 250.0,
+    "pitch_class": "high",
+    "speech_s": 202.3,
+    "overlap_free_s": 126.5,
+    "overlap_ratio": 0.375,
+    "snr_db": 15.2
+   },
+   "spk1": {
+    "f0_hz": 213.3,
+    "pitch_class": "high",
+    "speech_s": 348.5,
+    "overlap_free_s": 247.2,
+    "overlap_ratio": 0.291,
+    "snr_db": 14.1
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3385730": {
+  "duration_s": 608.3,
+  "background_rms": 0.01703731351342607,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 254.0,
+    "pitch_class": "high",
+    "speech_s": 366.6,
+    "overlap_free_s": 230.1,
+    "overlap_ratio": 0.372,
+    "snr_db": 14.5
+   },
+   "spk1": {
+    "f0_hz": 202.5,
+    "pitch_class": "high",
+    "speech_s": 169.0,
+    "overlap_free_s": 67.5,
+    "overlap_ratio": 0.601,
+    "snr_db": 18.4
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3396231": {
+  "duration_s": 607.4,
+  "background_rms": 0.004109228597760161,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 262.3,
+    "pitch_class": "high",
+    "speech_s": 276.6,
+    "overlap_free_s": 201.6,
+    "overlap_ratio": 0.271,
+    "snr_db": 23.6
+   },
+   "spk1": {
+    "f0_hz": 205.1,
+    "pitch_class": "high",
+    "speech_s": 247.4,
+    "overlap_free_s": 204.0,
+    "overlap_ratio": 0.176,
+    "snr_db": 22.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3399073": {
+  "duration_s": 615.4,
+  "background_rms": 0.0033606837603524964,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 266.7,
+    "pitch_class": "high",
+    "speech_s": 417.5,
+    "overlap_free_s": 180.6,
+    "overlap_ratio": 0.568,
+    "snr_db": 23.0
+   },
+   "spk1": {
+    "f0_hz": 168.4,
+    "pitch_class": "high",
+    "speech_s": 184.9,
+    "overlap_free_s": 56.2,
+    "overlap_ratio": 0.696,
+    "snr_db": 21.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3413937": {
+  "duration_s": 616.6,
+  "background_rms": 0.013444405777414528,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 219.2,
+    "pitch_class": "high",
+    "speech_s": 434.0,
+    "overlap_free_s": 344.1,
+    "overlap_ratio": 0.207,
+    "snr_db": 8.9
+   },
+   "spk1": {
+    "f0_hz": 190.5,
+    "pitch_class": "high",
+    "speech_s": 109.2,
+    "overlap_free_s": 40.1,
+    "overlap_ratio": 0.633,
+    "snr_db": 16.6
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3433042": {
+  "duration_s": 630.9,
+  "background_rms": 0.006501567138123668,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 228.6,
+    "pitch_class": "high",
+    "speech_s": 264.0,
+    "overlap_free_s": 185.0,
+    "overlap_ratio": 0.299,
+    "snr_db": 13.0
+   },
+   "spk1": {
+    "f0_hz": 202.5,
+    "pitch_class": "high",
+    "speech_s": 219.5,
+    "overlap_free_s": 140.0,
+    "overlap_ratio": 0.362,
+    "snr_db": 18.0
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3447838": {
+  "duration_s": 913.4,
+  "background_rms": 0.009496879092070875,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 210.5,
+    "pitch_class": "high",
+    "speech_s": 524.0,
+    "overlap_free_s": 153.2,
+    "overlap_ratio": 0.708,
+    "snr_db": 21.8
+   },
+   "spk1": {
+    "f0_hz": 200.0,
+    "pitch_class": "high",
+    "speech_s": 398.8,
+    "overlap_free_s": 97.0,
+    "overlap_ratio": 0.757,
+    "snr_db": 17.7
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3499432": {
+  "duration_s": 902.6,
+  "background_rms": 0.0033247551604387447,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 246.2,
+    "pitch_class": "high",
+    "speech_s": 429.5,
+    "overlap_free_s": 147.2,
+    "overlap_ratio": 0.657,
+    "snr_db": 21.2
+   },
+   "spk1": {
+    "f0_hz": 216.2,
+    "pitch_class": "high",
+    "speech_s": 405.1,
+    "overlap_free_s": 147.1,
+    "overlap_ratio": 0.637,
+    "snr_db": 19.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3519376": {
+  "duration_s": 612.7,
+  "background_rms": 0.006621925301609693,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 216.2,
+    "pitch_class": "high",
+    "speech_s": 156.3,
+    "overlap_free_s": 93.9,
+    "overlap_ratio": 0.399,
+    "snr_db": 19.2
+   },
+   "spk1": {
+    "f0_hz": 177.8,
+    "pitch_class": "high",
+    "speech_s": 303.2,
+    "overlap_free_s": 207.3,
+    "overlap_ratio": 0.316,
+    "snr_db": 19.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3563865": {
+  "duration_s": 442.7,
+  "background_rms": 0.01408313285860412,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 237.3,
+    "overlap_free_s": 29.3,
+    "overlap_ratio": 0.877,
+    "snr_db": 16.2
+   },
+   "spk1": {
+    "f0_hz": null,
+    "pitch_class": null,
+    "speech_s": 252.5,
+    "overlap_free_s": 0,
+    "overlap_ratio": 1.0,
+    "snr_db": null
+   }
+  },
+  "pitch_classes": "?+high"
+ },
+ "3618325": {
+  "duration_s": 672.2,
+  "background_rms": 0.00536792437927081,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 210.5,
+    "pitch_class": "high",
+    "speech_s": 268.8,
+    "overlap_free_s": 161.1,
+    "overlap_ratio": 0.401,
+    "snr_db": 16.7
+   },
+   "spk1": {
+    "f0_hz": 161.6,
+    "pitch_class": "low",
+    "speech_s": 299.1,
+    "overlap_free_s": 165.5,
+    "overlap_ratio": 0.447,
+    "snr_db": 11.6
+   }
+  },
+  "pitch_classes": "high+low"
+ },
+ "3660167": {
+  "duration_s": 611.1,
+  "background_rms": 0.011957381442498386,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 146.8,
+    "pitch_class": "low",
+    "speech_s": 252.4,
+    "overlap_free_s": 59.8,
+    "overlap_ratio": 0.763,
+    "snr_db": 14.2
+   },
+   "spk1": {
+    "f0_hz": 110.3,
+    "pitch_class": "low",
+    "speech_s": 332.1,
+    "overlap_free_s": 159.9,
+    "overlap_ratio": 0.519,
+    "snr_db": 10.6
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3683686": {
+  "duration_s": 953.2,
+  "background_rms": 0.009084354195146218,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 197.5,
+    "pitch_class": "high",
+    "speech_s": 490.9,
+    "overlap_free_s": 92.5,
+    "overlap_ratio": 0.812,
+    "snr_db": 18.5
+   },
+   "spk1": {
+    "f0_hz": 172.0,
+    "pitch_class": "high",
+    "speech_s": 451.8,
+    "overlap_free_s": 58.0,
+    "overlap_ratio": 0.872,
+    "snr_db": 14.4
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3704252": {
+  "duration_s": 616.9,
+  "background_rms": 0.002542819458882186,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 215.4,
+    "overlap_free_s": 127.0,
+    "overlap_ratio": 0.41,
+    "snr_db": 19.0
+   },
+   "spk1": {
+    "f0_hz": 186.0,
+    "pitch_class": "high",
+    "speech_s": 265.4,
+    "overlap_free_s": 195.9,
+    "overlap_ratio": 0.262,
+    "snr_db": 16.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3729840": {
+  "duration_s": 329.3,
+  "background_rms": 0.027945984800141585,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 146.8,
+    "pitch_class": "low",
+    "speech_s": 164.1,
+    "overlap_free_s": 103.4,
+    "overlap_ratio": 0.37,
+    "snr_db": 11.1
+   },
+   "spk1": {
+    "f0_hz": 106.7,
+    "pitch_class": "low",
+    "speech_s": 86.4,
+    "overlap_free_s": 47.6,
+    "overlap_ratio": 0.449,
+    "snr_db": 3.0
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3785595": {
+  "duration_s": 613.7,
+  "background_rms": 0.002801082728884201,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 210.5,
+    "pitch_class": "high",
+    "speech_s": 360.6,
+    "overlap_free_s": 111.7,
+    "overlap_ratio": 0.69,
+    "snr_db": 18.6
+   },
+   "spk1": {
+    "f0_hz": 210.5,
+    "pitch_class": "high",
+    "speech_s": 206.4,
+    "overlap_free_s": 47.6,
+    "overlap_ratio": 0.769,
+    "snr_db": 12.2
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3801058": {
+  "duration_s": 646.3,
+  "background_rms": 0.010982228592904887,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 238.8,
+    "pitch_class": "high",
+    "speech_s": 356.4,
+    "overlap_free_s": 228.5,
+    "overlap_ratio": 0.359,
+    "snr_db": 19.0
+   },
+   "spk1": {
+    "f0_hz": 195.1,
+    "pitch_class": "high",
+    "speech_s": 202.2,
+    "overlap_free_s": 148.1,
+    "overlap_ratio": 0.268,
+    "snr_db": 14.6
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3819695": {
+  "duration_s": 604.9,
+  "background_rms": 0.012012373310325513,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 142.9,
+    "pitch_class": "low",
+    "speech_s": 357.4,
+    "overlap_free_s": 180.6,
+    "overlap_ratio": 0.495,
+    "snr_db": 16.1
+   },
+   "spk1": {
+    "f0_hz": 106.7,
+    "pitch_class": "low",
+    "speech_s": 154.1,
+    "overlap_free_s": 40.6,
+    "overlap_ratio": 0.737,
+    "snr_db": 10.5
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3827529": {
+  "duration_s": 855.7,
+  "background_rms": 0.020834046582995657,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 152.4,
+    "pitch_class": "low",
+    "speech_s": 155.4,
+    "overlap_free_s": 35.2,
+    "overlap_ratio": 0.773,
+    "snr_db": 16.2
+   },
+   "spk1": {
+    "f0_hz": 131.1,
+    "pitch_class": "low",
+    "speech_s": 679.6,
+    "overlap_free_s": 418.3,
+    "overlap_ratio": 0.384,
+    "snr_db": 14.3
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3836246": {
+  "duration_s": 608.0,
+  "background_rms": 0.007548942595430184,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 246.2,
+    "pitch_class": "high",
+    "speech_s": 13.8,
+    "overlap_free_s": 6.0,
+    "overlap_ratio": 0.564,
+    "snr_db": 20.5
+   },
+   "spk1": {
+    "f0_hz": 246.2,
+    "pitch_class": "high",
+    "speech_s": 532.6,
+    "overlap_free_s": 445.6,
+    "overlap_ratio": 0.163,
+    "snr_db": 20.9
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3852482": {
+  "duration_s": 610.0,
+  "background_rms": 0.01779991786311312,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 149.5,
+    "pitch_class": "low",
+    "speech_s": 266.7,
+    "overlap_free_s": 154.4,
+    "overlap_ratio": 0.421,
+    "snr_db": 14.5
+   },
+   "spk1": {
+    "f0_hz": 135.6,
+    "pitch_class": "low",
+    "speech_s": 200.8,
+    "overlap_free_s": 116.0,
+    "overlap_ratio": 0.422,
+    "snr_db": 11.5
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3881193": {
+  "duration_s": 605.0,
+  "background_rms": 0.01059639961721131,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 207.8,
+    "pitch_class": "high",
+    "speech_s": 385.6,
+    "overlap_free_s": 191.2,
+    "overlap_ratio": 0.504,
+    "snr_db": 8.9
+   },
+   "spk1": {
+    "f0_hz": 219.2,
+    "pitch_class": "high",
+    "speech_s": 158.6,
+    "overlap_free_s": 44.1,
+    "overlap_ratio": 0.722,
+    "snr_db": 3.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3900331": {
+  "duration_s": 608.1,
+  "background_rms": 0.001270971130201326,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 197.5,
+    "pitch_class": "high",
+    "speech_s": 304.2,
+    "overlap_free_s": 69.8,
+    "overlap_ratio": 0.771,
+    "snr_db": 20.3
+   },
+   "spk1": {
+    "f0_hz": 181.8,
+    "pitch_class": "high",
+    "speech_s": 269.1,
+    "overlap_free_s": 87.1,
+    "overlap_ratio": 0.676,
+    "snr_db": 18.0
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3916744": {
+  "duration_s": 373.5,
+  "background_rms": 0.02718787383970995,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 120.3,
+    "pitch_class": "low",
+    "speech_s": 150.4,
+    "overlap_free_s": 44.6,
+    "overlap_ratio": 0.703,
+    "snr_db": 10.3
+   },
+   "spk1": {
+    "f0_hz": 120.3,
+    "pitch_class": "low",
+    "speech_s": 201.9,
+    "overlap_free_s": 111.5,
+    "overlap_ratio": 0.448,
+    "snr_db": 12.3
+   }
+  },
+  "pitch_classes": "low+low"
+ },
+ "3966309": {
+  "duration_s": 628.2,
+  "background_rms": 0.011461072447442492,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 183.9,
+    "pitch_class": "high",
+    "speech_s": 245.6,
+    "overlap_free_s": 167.6,
+    "overlap_ratio": 0.318,
+    "snr_db": 15.8
+   },
+   "spk1": {
+    "f0_hz": 246.2,
+    "pitch_class": "high",
+    "speech_s": 287.3,
+    "overlap_free_s": 210.5,
+    "overlap_ratio": 0.267,
+    "snr_db": 15.3
+   }
+  },
+  "pitch_classes": "high+high"
+ },
+ "3989817": {
+  "duration_s": 672.4,
+  "background_rms": 0.0049668749245119605,
+  "speakers": {
+   "spk0": {
+    "f0_hz": 222.2,
+    "pitch_class": "high",
+    "speech_s": 214.8,
+    "overlap_free_s": 134.3,
+    "overlap_ratio": 0.375,
+    "snr_db": 24.4
+   },
+   "spk1": {
+    "f0_hz": 210.5,
+    "pitch_class": "high",
+    "speech_s": 376.9,
+    "overlap_free_s": 264.3,
+    "overlap_ratio": 0.299,
+    "snr_db": 21.7
+   }
+  },
+  "pitch_classes": "high+high"
+ }
+}
