@@ -12,9 +12,14 @@ Writes  mse_per_conversion.csv   one row per conversion: source, reference, segm
         mse_by_noise.csv         per step: mean MSE for each noise z1 .. zN
         mse_vs_step.png          the curves (log scale)
 """
-import argparse, csv, json, sys, time
+import argparse, csv, io, json, sys, time
 from pathlib import Path
 import numpy as np
+
+
+def load_npz(path):
+    """np.load of a whole file read in one call: on a latency-bound NFS mount the small reads of the zip reader are 10x slower."""
+    return np.load(io.BytesIO(Path(path).read_bytes()))
 
 
 def states_mse(z, npz):
@@ -45,6 +50,7 @@ def states_mse(z, npz):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("run"); ap.add_argument("--out", default=None); ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--fresh", action="store_true", help="ignore an existing mse_per_conversion.csv instead of resuming it")
     a = ap.parse_args()
     run = Path(a.run)
     out = Path(a.out) if a.out else run / "mse"
@@ -53,24 +59,44 @@ def main():
     rows = [{k.strip(): v.strip() for k, v in r.items()} for r in rows]
     if a.limit:
         rows = rows[: a.limit]
-    noises = np.load(run / "noises.npz")
+    noises = load_npz(run / "noises.npz")
+    # resume: rows already in mse_per_conversion.csv (complete lines only; a killed job may leave a truncated last line)
+    per_path = out / "mse_per_conversion.csv"
+    done = {}
+    if per_path.exists() and not a.fresh:
+        for r in csv.DictReader(open(per_path, newline="", encoding="utf-8")):
+            vals = [r.get(k) for k in r if k.startswith("mse_")]
+            if vals and all(v not in (None, "") for v in vals) and r.get("energy"):
+                done[(r["source"], r["reference"], r["segment"], r["noise"])] = (float(r["energy"]), np.array([float(v) for v in vals]))
+        if done:
+            print(f"resuming: {len(done)} of {len(rows)} conversions already in {per_path}", flush=True)
     t0 = time.time()
     per, energies, t_span = [], [], None
-    with open(out / "mse_per_conversion.csv", "w", newline="", encoding="utf-8") as fh:
-        w = None
-        for i, r in enumerate(rows, 1):
-            npz = np.load(run / r["path"])
-            mse, energy, meta, t = states_mse(noises[r["noise"]], npz)
-            t_span = t
-            if w is None:
-                w = csv.writer(fh)
-                w.writerow(["source", "reference", "segment", "noise", "frames", "energy"] + [f"mse_{k:02d}" for k in range(len(mse))])
-            w.writerow([r["source"], r["reference"], r["segment"], r["noise"], r["frames"], f"{energy:.5f}"] + [f"{m:.6g}" for m in mse])
+    todo = len(rows) - len(done)
+    with open(per_path, "a" if done else "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh) if done else None
+        i = 0
+        for r in rows:
+            key = (r["source"], r["reference"], r["segment"], r["noise"])
+            if key in done:
+                energy, mse = done[key]
+            else:
+                npz = load_npz(run / r["path"])
+                mse, energy, meta, t = states_mse(noises[r["noise"]], npz)
+                t_span = t
+                if w is None:
+                    w = csv.writer(fh)
+                    w.writerow(["source", "reference", "segment", "noise", "frames", "energy"] + [f"mse_{k:02d}" for k in range(len(mse))])
+                w.writerow([r["source"], r["reference"], r["segment"], r["noise"], r["frames"], f"{energy:.5f}"] + [f"{m:.6g}" for m in mse])
+                fh.flush()
+                i += 1
+                if i % 250 == 0 or i == todo:
+                    el = time.time() - t0
+                    print(f"[{i}/{todo}] {el / 60:.1f} min, left ~{el / i * (todo - i) / 60:.0f} min", flush=True)
             per.append((r["noise"], mse))
             energies.append(energy)
-            if i % 250 == 0 or i == len(rows):
-                el = time.time() - t0
-                print(f"[{i}/{len(rows)}] {el / 60:.1f} min, left ~{el / i * (len(rows) - i) / 60:.0f} min", flush=True)
+    if t_span is None:                                                  # everything was resumed: read t from one file
+        t_span = load_npz(run / rows[0]["path"])["t"]
     M = np.stack([m for _, m in per])                                  # (conversions, steps+1)
     S = M.shape[1] - 1
     energy_mean = float(np.mean(energies))

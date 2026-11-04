@@ -3,7 +3,7 @@
 Research work for the voice-anonymization publication, separate from the pipeline/benchmark work (repo
 trinity1611/Voice-Anonymization). This repo: trinity1611/Research-Exps-for-VA. Large data stays outside the repo and
 outside OneDrive: laptop `C:\anon-local`, cluster `~/anon-bench`. Setup and cluster usage: `CLAUDE.md`.
-Written 2026-11-04, last updated 2026-11-04.
+Written 2026-11-04, last updated 2026-11-04 (evening: trajectory sets 1 and 2 finished, results fetched).
 
 **Starting a new Claude Code session**: clone this repo anywhere (the pipeline code it needs is in `pipeline/`), open
 Claude Code in the clone, and say "read README.md and continue with <task>". Section 0 lists what is pending.
@@ -12,14 +12,16 @@ stock DiT checkpoint, the Python environment, and the DISPLACE-M data.
 
 ## 0. Pending at the time of writing (2026-11-04)
 
-| cluster job | what | output | how to read |
+| cluster job | what | output | status |
 |---|---|---|---|
-| 15892 (running) | trajectory set 2: 5 new conversations, 900 conversions, batch 2, then MSE | `~/anon-bench/trajectory/pairs_combined_2/` | `tail slurm_pairs_traj_15892.out`; `cat trajectory/pairs_combined_2/mse/mse_summary.csv` |
-| 15893 (running) | MSE per step of trajectory set 1 (3,800 conversions) | `~/anon-bench/trajectory/pairs_combined/mse/` | `tail -n 40 slurm_pairs_traj_15893.out` |
-| 15896 (queued) | Aspect 1 MI run on DISPLACE (manifest, 5,388 outputs, features, analysis), ~5 h | `~/anon-bench/aspect1_mi/runs/displace/results/` | `tail slurm_aspect1_mi_15896.out`; `results.csv`, `mi_vs_t_S.png`, `mi_vs_t_C.png`, `leak_vs_util.png` |
+| 15892 | trajectory set 2: 5 new conversations, 900 conversions, batch 2, then MSE | `~/anon-bench/trajectory/pairs_combined_2/` | DONE 18:02; results in `trajectory/results/pairs_combined_2/` |
+| 15901 (replaced 15893) | MSE per step of trajectory set 1 (3,800 conversions) | `~/anon-bench/trajectory/pairs_combined/mse/` | DONE 18:00; results in `trajectory/results/pairs_combined/` |
+| 15902 (replaced 15896) | Aspect 1 MI run on DISPLACE (manifest, 5,388 outputs, features, analysis), 12 h limit | `~/anon-bench/aspect1_mi/runs/displace/results/` | RUNNING on n3 since ~14:30; `tail slurm_aspect1_mi_15902.out`; then fetch `results/*` into `aspect1_mi/results/displace/` |
 
-When they finish: fetch the small result files (`mse/*.csv`, `mse_vs_step.png`, `results/*`) into this repo under the
-matching folder (`trajectory/results/<run>/`, `aspect1_mi/results/<tag>/`) and commit them; interpret the curves.
+Interpretation of the MSE curves: `trajectory/results/README.md` (straight path, noise-independent, spread = loudness).
+Storage incident 2026-11-04 afternoon: the NFS home (`192.168.1.254:/home`, 6-8 MB/s, latency-bound) stalled all
+jobs in state D; 15893/15896 were cancelled and resubmitted as 15901/15902. Fix in the scripts: files are read with
+one call (`io.BytesIO(path.read_bytes())`) and `pair_mse.py` resumes from a partial `mse_per_conversion.csv`.
 The listening test (anon-fuzzy.pages.dev, deadline Fri 30 Oct 2026) is pipeline work, not part of this repo.
 
 ## 1. Context in one paragraph
@@ -101,7 +103,7 @@ Conversations: 2190472 2215699 2392867 2508371 2577003 2751425 3017365 3228806 3
 Laptop sample: `C:\anon-local\trajectory_runs\pairs_combined\` (index, selection, noises, refs, sources, pair
 2190472_spk0__to__2215699_spk0 complete, plus seg1_z1 of five other pairs; 220 MB).
 
-### Run 2, submitted 2026-11-04 (jobs 15892 new set, 15893 MSE of run 1), both PENDING in the queue
+### Run 2, done 2026-11-04 (job 15892 new set, 58 min on a storage-starved n1; MSE of run 1 = job 15901, 53 min)
 Second protocol message: 5 NEW conversations (none of run 1) -> 10 speakers, 10C2 = 45 pairs x 5 segments x 4 noises
 = 900 conversions; "if you are using less than 45 GB increase the batch by 2 times" (read as GPU batch: run 1 used
 ~5 GB at batch 1, so `--batch 2` noises per DiT pass; the alternative reading, disk < 45 GB, would be `N_CONV=10`);
@@ -116,14 +118,16 @@ cd ~/anon-bench
 sbatch --export=ALL,TAG=pairs_combined_2,N_CONV=5,EXCLUDE_SELECTION=$HOME/anon-bench/trajectory/pairs_combined/selection.json trajectory/pair_experiment.sbatch
 sbatch --export=ALL,TAG=pairs_combined,STAGES=mse trajectory/pair_experiment.sbatch     # MSE of run 1 -> trajectory/pairs_combined/mse/
 ```
-When they finish: `tail slurm_pairs_traj_15892.out slurm_pairs_traj_15893.out`, `cat trajectory/pairs_combined_2/mse/mse_summary.csv`.
+Results of both sets (index, selection, logs, `mse/*`): `trajectory/results/{pairs_combined,pairs_combined_2}/`, read in
+`trajectory/results/README.md`. Set 2 verified: batch 1 bit-identical, batch 2 within 0.07 %; GPU peak 1.9 GB.
 
 ### MSE analysis (`pair_mse.py`)
 Outputs in `<run>/mse/`: `mse_per_conversion.csv` (mse_00..mse_30 per conversion = mean over the mel of (x_k - x_30)^2,
 plus `energy` = mean of x_30^2 for scale), `mse_summary.csv` (mean, std, median, p10, p90, min, max per step),
-`mse_by_noise.csv`, `mse_vs_step.png` (log scale). On 12 local test conversions: 56 at step 0, 14 at step 15, 1.0 at
-step 26, 0.06 at step 29, 6e-6 at step 30 (float16 storage, not exactly 0); the curve follows (1 - t)^2 x MSE_0
-closely, i.e. the sampling path is nearly straight in mel space; the four noises give indistinguishable curves.
+`mse_by_noise.csv`, `mse_vs_step.png` (log scale). Resumes from a partial `mse_per_conversion.csv` (`--fresh` to ignore
+it). Results on 3,800 + 900 conversions (`trajectory/results/README.md`): MSE_k = 0.985 (1 - t)^2 MSE_0, per-conversion
+MSE_15/MSE_0 = 0.246 +- 0.001 (straight path); noises differ < 0.7 %; MSE_0 = mean(x_30^2) + 0.3, so the final mel keeps
+a trace (corr ~0.05) of its starting noise; spread between conversions = loudness (corr 1.000 with energy).
 
 ### What the step grids show
 Steps 1-5 nearly uniform noise; steps 6-15 the coarse layout (pauses as dark vertical stripes, word boundaries,
@@ -153,6 +157,9 @@ Frames = seconds x 86.13 (e.g. 14.83 s -> 1277 frames). Model: `configs/models/x
   installed in that env, run it inside a job with `srun --jobid=<id> --overlap --pty ...`); GPU nodes n1 (RTX PRO
   6000), n2 (H200), n3; login node has no GPU. Jobs queue with reason Priority/Resources when the nodes are full.
 - Files written on Windows must be CRLF-stripped before sbatch: `sed -i 's/\r$//' trajectory/*.py trajectory/*.sbatch`.
+- Home is NFS (`192.168.1.254:/home`, rsize 1 MB) and can drop to 6-8 MB/s, latency-bound: read whole files with one
+  call (`io.BytesIO(path.read_bytes())`, done in the scripts), never many small reads; mmap model loading is slow then.
+  Processes in state D with 0 % CPU and 0 % GPU = storage wait; `srun --overlap` into such a job may time out too.
 - Windows scp does not expand `{a,b}`; tar on the cluster first, then scp the archive.
 - Laptop test environment: `C:\Users\Hp\miniconda3\envs\seedvc\python.exe`, `--seedvc-root C:/anon-local/seed-vc`,
   `--models-dir C:/anon-local/exp6_9`, `HF_HUB_CACHE=C:/anon-local/seed-vc/checkpoints/hf_cache`, offline flags on;
@@ -175,7 +182,10 @@ content C is continuous (Whisper embedding of the original). Synthetic tests: `a
 
 ## 8. Open points
 
-- Read the results of jobs 15892 / 15893 (MSE tables for both sets) and 15896 (MI curves); plot grids for z2-z4 if wanted.
+- Read the results of job 15902 (Aspect 1 MI curves) when it finishes; the MSE of both trajectory sets is done and written up.
+- Tell the colleague: GPU peak was 1.9 GB at batch 2, so if "under 45 GB" meant disk, set 2 could be 10 conversations (`N_CONV=10`).
+- Plot step grids for z2-z4 / set 2 if wanted. Not written yet: a check that every pair file has an index row (a kill
+  between writing the npz and its row would leave a file the MSE stage never sees).
 - The analysis goal beyond the MSE curve has not been stated by the colleague; ask before adding features.
 - `PAIRS=ordered` (both directions) and `BRANCHES=1` (v_cond / v_uncond, 3x size) are available if asked.
 - ECAPA-TDNN as a second ASV family needs speechbrain installed on the cluster login node (not done).

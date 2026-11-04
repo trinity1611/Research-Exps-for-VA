@@ -28,6 +28,7 @@ The states are not stored: x_k = z[:frames] + sum_{i<k} dt_i * velocity_i reprod
 With --branches the two guidance branches v_cond / v_uncond are stored as well (guided = (1+cfg) v_cond - cfg v_uncond).
 """
 import sys
+import io
 import os
 import csv
 import json
@@ -187,7 +188,7 @@ def select(a):
     (out / "sources").mkdir(exist_ok=True); (out / "refs").mkdir(exist_ok=True)
     spk_rows = []
     for c in convs:
-        x, sr = sf.read(str(wav_dir / f"{c['file']}.wav"), dtype="float32", always_2d=True)
+        x, sr = sf.read(io.BytesIO((wav_dir / f"{c['file']}.wav").read_bytes()), dtype="float32", always_2d=True)   # one read call: NFS latency
         x = x.mean(axis=1)
         if sr != SR:
             import torch, torchaudio

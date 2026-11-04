@@ -11,7 +11,7 @@ diarization: every diarized speaker is a source speaker or a pool (target) speak
                                      [--n-src 60] [--per-speaker 15] [--min-sec 4] [--max-sec 8] [--ref-sec 20] [--seed 0]
 Writes <out>/sources/<spk>/uNNN.wav, <out>/pool/<spk>.wav, <out>/manifest.csv, <out>/pool.csv, <out>/manifest.log
 """
-import argparse, csv, sys
+import argparse, csv, io, sys
 from pathlib import Path
 import numpy as np
 
@@ -35,7 +35,7 @@ def main():
     man, pool, log = [], [], []
 
     def load(fid):
-        x, sr = sf.read(str(wav_dir / f"{fid}.wav"), dtype="float32", always_2d=True)
+        x, sr = sf.read(io.BytesIO((wav_dir / f"{fid}.wav").read_bytes()), dtype="float32", always_2d=True)   # one read call: NFS latency
         x = x.mean(axis=1)
         if sr != SR:
             import torch, torchaudio

@@ -12,7 +12,7 @@ same length, negative control). Output: <out>/features/<encoder>.npz with `emb` 
 
     python features.py --out <out> --manifest m.csv [--encoders wavlm,campplus,whisper,xlsr,melstat] [--seedvc-root R]
 """
-import argparse, csv, sys, time
+import argparse, csv, io, sys, time
 import os
 from pathlib import Path
 import numpy as np
@@ -89,7 +89,7 @@ class Xlsr:
 
 
 def melstat(npz_path, k):
-    z = np.load(npz_path)
+    z = np.load(io.BytesIO(Path(npz_path).read_bytes()))   # one read call: NFS latency
     x = z[f"x_{k:02d}"].astype("float32")
     return np.concatenate([x.mean(1), x.std(1)])
 

@@ -1,0 +1,85 @@
+Warning: Skipped loading some keys due to shape mismatch: {'estimator.input_pos'}
+cfm loaded
+Warning: Skipped loading some keys due to shape mismatch: {'extra_codebooks.0.weight', 'extra_codebook_mask_tokens.0'}
+length_regulator loaded
+Loading weights from nvidia/bigvgan_v2_22khz_80band_fmax8k_256x
+Removing weight norm...
+engine: sr=22050 hop=256 steps=30 cfg=1.0 n_mels=80 prompt<= 10.0s  max window 2580 frames
+20 reference voices encoded (prompt 10.0 s = 861 frames)
+[50/3800] 2190472_spk1 -> 2215699_spk0 seg3 z2  0.60s  elapsed 0.5 min, left ~41 min
+[100/3800] 2190472_spk1 -> 2392867_spk0 seg5 z4  0.30s  elapsed 1.1 min, left ~40 min
+[150/3800] 2190472_spk1 -> 2577003_spk0 seg3 z2  0.60s  elapsed 1.6 min, left ~39 min
+[200/3800] 2190472_spk1 -> 2751425_spk1 seg5 z4  0.30s  elapsed 2.1 min, left ~38 min
+[250/3800] 2190472_spk1 -> 3017365_spk1 seg3 z2  0.60s  elapsed 2.6 min, left ~37 min
+[300/3800] 2190472_spk1 -> 3228806_spk0 seg5 z4  0.30s  elapsed 3.1 min, left ~36 min
+[350/3800] 2190472_spk1 -> 3303284_spk1 seg3 z2  0.60s  elapsed 3.6 min, left ~36 min
+[400/3800] 2190472_spk0 -> 2215699_spk1 seg5 z4  0.32s  elapsed 4.1 min, left ~35 min
+[450/3800] 2190472_spk0 -> 2392867_spk0 seg3 z2  0.29s  elapsed 4.5 min, left ~33 min
+[500/3800] 2190472_spk0 -> 2508371_spk1 seg5 z4  0.32s  elapsed 4.9 min, left ~32 min
+[550/3800] 2190472_spk0 -> 2751425_spk1 seg3 z2  0.29s  elapsed 5.2 min, left ~31 min
+[600/3800] 2190472_spk0 -> 3017365_spk0 seg5 z4  0.32s  elapsed 5.6 min, left ~30 min
+[650/3800] 2190472_spk0 -> 3228806_spk0 seg3 z2  0.29s  elapsed 6.0 min, left ~29 min
+[700/3800] 2190472_spk0 -> 3229783_spk0 seg5 z4  0.32s  elapsed 6.4 min, left ~28 min
+[750/3800] 2215699_spk1 -> 2215699_spk0 seg3 z2  0.37s  elapsed 6.7 min, left ~27 min
+[800/3800] 2215699_spk1 -> 2392867_spk0 seg5 z4  0.32s  elapsed 7.1 min, left ~27 min
+[850/3800] 2215699_spk1 -> 2577003_spk0 seg3 z2  0.37s  elapsed 7.7 min, left ~27 min
+[900/3800] 2215699_spk1 -> 2751425_spk1 seg5 z4  0.32s  elapsed 8.8 min, left ~28 min
+[950/3800] 2215699_spk1 -> 3017365_spk1 seg3 z2  0.37s  elapsed 10.3 min, left ~31 min
+[1000/3800] 2215699_spk1 -> 3228806_spk0 seg5 z4  0.32s  elapsed 11.4 min, left ~32 min
+[1050/3800] 2215699_spk1 -> 3303284_spk1 seg3 z2  0.37s  elapsed 11.9 min, left ~31 min
+[1100/3800] 2215699_spk0 -> 2392867_spk1 seg5 z4  0.30s  elapsed 12.3 min, left ~30 min
+[1150/3800] 2215699_spk0 -> 2508371_spk1 seg3 z2  0.32s  elapsed 12.6 min, left ~29 min
+[1200/3800] 2215699_spk0 -> 2577003_spk1 seg5 z4  0.30s  elapsed 13.0 min, left ~28 min
+[1250/3800] 2215699_spk0 -> 3017365_spk0 seg3 z2  0.32s  elapsed 13.3 min, left ~27 min
+[1300/3800] 2215699_spk0 -> 3228806_spk1 seg5 z4  0.30s  elapsed 13.7 min, left ~26 min
+[1350/3800] 2215699_spk0 -> 3229783_spk0 seg3 z2  0.32s  elapsed 14.1 min, left ~26 min
+[1400/3800] 2215699_spk0 -> 3303284_spk0 seg5 z4  0.30s  elapsed 14.4 min, left ~25 min
+[1450/3800] 2392867_spk1 -> 2508371_spk1 seg3 z2  0.30s  elapsed 14.8 min, left ~24 min
+[1500/3800] 2392867_spk1 -> 2577003_spk1 seg5 z4  0.31s  elapsed 15.2 min, left ~23 min
+[1550/3800] 2392867_spk1 -> 3017365_spk0 seg3 z2  0.30s  elapsed 15.5 min, left ~23 min
+[1600/3800] 2392867_spk1 -> 3228806_spk1 seg5 z4  0.31s  elapsed 15.9 min, left ~22 min
+[1650/3800] 2392867_spk1 -> 3229783_spk0 seg3 z2  0.30s  elapsed 16.4 min, left ~21 min
+[1700/3800] 2392867_spk1 -> 3303284_spk0 seg5 z4  0.31s  elapsed 16.7 min, left ~21 min
+[1750/3800] 2392867_spk0 -> 2577003_spk0 seg3 z2  0.33s  elapsed 17.1 min, left ~20 min
+[1800/3800] 2392867_spk0 -> 2751425_spk1 seg5 z4  0.38s  elapsed 17.5 min, left ~19 min
+[1850/3800] 2392867_spk0 -> 3017365_spk1 seg3 z2  0.33s  elapsed 17.8 min, left ~19 min
+[1900/3800] 2392867_spk0 -> 3228806_spk0 seg5 z4  0.38s  elapsed 18.2 min, left ~18 min
+[1950/3800] 2392867_spk0 -> 3303284_spk1 seg3 z2  0.33s  elapsed 18.5 min, left ~18 min
+[2000/3800] 2508371_spk0 -> 2508371_spk1 seg5 z4  0.35s  elapsed 18.9 min, left ~17 min
+[2050/3800] 2508371_spk0 -> 2751425_spk1 seg3 z2  0.61s  elapsed 19.3 min, left ~17 min
+[2100/3800] 2508371_spk0 -> 3017365_spk0 seg5 z4  0.34s  elapsed 19.8 min, left ~16 min
+[2150/3800] 2508371_spk0 -> 3228806_spk0 seg3 z2  0.61s  elapsed 20.2 min, left ~15 min
+[2200/3800] 2508371_spk0 -> 3229783_spk0 seg5 z4  0.34s  elapsed 20.6 min, left ~15 min
+[2250/3800] 2508371_spk1 -> 2577003_spk0 seg3 z2  0.31s  elapsed 21.0 min, left ~14 min
+[2300/3800] 2508371_spk1 -> 2751425_spk1 seg5 z4  0.31s  elapsed 21.4 min, left ~14 min
+[2350/3800] 2508371_spk1 -> 3017365_spk1 seg3 z2  0.31s  elapsed 21.8 min, left ~13 min
+[2400/3800] 2508371_spk1 -> 3228806_spk0 seg5 z4  0.31s  elapsed 22.3 min, left ~13 min
+[2450/3800] 2508371_spk1 -> 3303284_spk1 seg3 z2  0.31s  elapsed 22.7 min, left ~13 min
+[2500/3800] 2577003_spk0 -> 2577003_spk1 seg5 z4  0.61s  elapsed 23.2 min, left ~12 min
+[2550/3800] 2577003_spk0 -> 3017365_spk0 seg3 z2  0.35s  elapsed 23.7 min, left ~12 min
+[2600/3800] 2577003_spk0 -> 3228806_spk1 seg5 z4  0.61s  elapsed 24.1 min, left ~11 min
+[2650/3800] 2577003_spk0 -> 3229783_spk0 seg3 z2  0.35s  elapsed 24.6 min, left ~11 min
+[2700/3800] 2577003_spk0 -> 3303284_spk0 seg5 z4  0.61s  elapsed 25.1 min, left ~10 min
+[2750/3800] 2577003_spk1 -> 3017365_spk0 seg3 z2  0.33s  elapsed 25.5 min, left ~10 min
+[2800/3800] 2577003_spk1 -> 3228806_spk1 seg5 z4  0.32s  elapsed 25.9 min, left ~9 min
+[2850/3800] 2577003_spk1 -> 3229783_spk0 seg3 z2  0.33s  elapsed 26.3 min, left ~9 min
+[2900/3800] 2577003_spk1 -> 3303284_spk0 seg5 z4  0.32s  elapsed 26.7 min, left ~8 min
+[2950/3800] 2751425_spk1 -> 3017365_spk1 seg3 z2  0.36s  elapsed 27.3 min, left ~8 min
+[3000/3800] 2751425_spk1 -> 3228806_spk0 seg5 z4  0.34s  elapsed 27.8 min, left ~7 min
+[3050/3800] 2751425_spk1 -> 3303284_spk1 seg3 z2  0.36s  elapsed 28.3 min, left ~7 min
+[3100/3800] 2751425_spk0 -> 3017365_spk0 seg5 z4  0.31s  elapsed 28.7 min, left ~6 min
+[3150/3800] 2751425_spk0 -> 3228806_spk0 seg3 z2  0.34s  elapsed 29.1 min, left ~6 min
+[3200/3800] 2751425_spk0 -> 3229783_spk0 seg5 z4  0.31s  elapsed 29.6 min, left ~6 min
+[3250/3800] 3017365_spk0 -> 3017365_spk1 seg3 z2  0.29s  elapsed 30.1 min, left ~5 min
+[3300/3800] 3017365_spk0 -> 3228806_spk0 seg5 z4  0.61s  elapsed 30.6 min, left ~5 min
+[3350/3800] 3017365_spk0 -> 3303284_spk1 seg3 z2  0.29s  elapsed 31.0 min, left ~4 min
+[3400/3800] 3017365_spk1 -> 3228806_spk1 seg5 z4  0.30s  elapsed 31.8 min, left ~4 min
+[3450/3800] 3017365_spk1 -> 3229783_spk0 seg3 z2  0.30s  elapsed 32.3 min, left ~3 min
+[3500/3800] 3017365_spk1 -> 3303284_spk0 seg5 z4  0.30s  elapsed 32.8 min, left ~3 min
+[3550/3800] 3228806_spk1 -> 3229783_spk0 seg3 z2  0.29s  elapsed 33.2 min, left ~2 min
+[3600/3800] 3228806_spk1 -> 3303284_spk0 seg5 z4  0.30s  elapsed 33.6 min, left ~2 min
+[3650/3800] 3228806_spk0 -> 3303284_spk1 seg3 z2  0.34s  elapsed 34.1 min, left ~1 min
+[3700/3800] 3229783_spk1 -> 3229783_spk0 seg5 z4  0.32s  elapsed 34.6 min, left ~1 min
+[3750/3800] 3229783_spk0 -> 3303284_spk1 seg3 z2  0.32s  elapsed 35.0 min, left ~0 min
+[3800/3800] 3303284_spk1 -> 3303284_spk0 seg5 z4  0.35s  elapsed 35.4 min, left ~0 min
+done: 3800 conversions, 190 pairs x 5 segments x 4 noises; velocities 25.7 GB in /home/udit.tatia/anon-bench/trajectory/pairs_combined/pairs; index.csv

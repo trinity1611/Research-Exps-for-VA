@@ -1,0 +1,28 @@
+Warning: Skipped loading some keys due to shape mismatch: {'estimator.input_pos'}
+cfm loaded
+Warning: Skipped loading some keys due to shape mismatch: {'extra_codebook_mask_tokens.0', 'extra_codebooks.0.weight'}
+length_regulator loaded
+Loading weights from nvidia/bigvgan_v2_22khz_80band_fmax8k_256x
+Removing weight norm...
+engine: sr=22050 hop=256 steps=30 cfg=1.0 n_mels=80 prompt<= 10.0s  max window 2580 frames; batch 2 noise(s) per DiT pass (4 sequences with guidance)
+10 reference voices encoded (prompt 10.0 s = 861 frames)
+verify 3334594_spk0 -> 3334594_spk1 seg1: engine vs batched loop (batch 1): max |dy| = 0.00e+00, max |dv| = 0.00e+00; batch 2: max |dy| = 1.27e-02 (mean rel 0.07 %), max |dv| = 1.19e-01 (mean rel 0.06 %); z1 vs z2 audio max |dy| = 0.846  (|y| <= 1)
+[50/900] 3334594_spk0 -> 3340696_spk0 seg3 z1+2  0.58s  elapsed 8.2 min, left ~140 min  GPU peak 1.9 GB
+[100/900] 3334594_spk0 -> 3385730_spk1 seg5 z3+4  0.97s  elapsed 10.6 min, left ~85 min  GPU peak 1.9 GB
+[150/900] 3334594_spk0 -> 3433042_spk0 seg3 z1+2  0.58s  elapsed 16.2 min, left ~81 min  GPU peak 1.9 GB
+[200/900] 3334594_spk1 -> 3340696_spk1 seg5 z3+4  0.52s  elapsed 28.3 min, left ~99 min  GPU peak 1.9 GB
+[250/900] 3334594_spk1 -> 3385730_spk1 seg3 z1+2  0.62s  elapsed 42.5 min, left ~111 min  GPU peak 1.9 GB
+[300/900] 3334594_spk1 -> 3413937_spk1 seg5 z3+4  0.52s  elapsed 43.9 min, left ~88 min  GPU peak 1.9 GB
+[350/900] 3340696_spk1 -> 3340696_spk0 seg3 z1+2  0.62s  elapsed 45.5 min, left ~72 min  GPU peak 1.9 GB
+[400/900] 3340696_spk1 -> 3385730_spk1 seg5 z3+4  0.59s  elapsed 46.7 min, left ~58 min  GPU peak 1.9 GB
+[450/900] 3340696_spk1 -> 3433042_spk0 seg3 z1+2  0.61s  elapsed 47.8 min, left ~48 min  GPU peak 1.9 GB
+[500/900] 3340696_spk0 -> 3385730_spk0 seg5 z3+4  0.64s  elapsed 49.0 min, left ~39 min  GPU peak 1.9 GB
+[550/900] 3340696_spk0 -> 3413937_spk1 seg3 z1+2  0.73s  elapsed 49.9 min, left ~32 min  GPU peak 1.9 GB
+[600/900] 3340696_spk0 -> 3433042_spk1 seg5 z3+4  0.64s  elapsed 50.9 min, left ~25 min  GPU peak 1.9 GB
+[650/900] 3385730_spk0 -> 3413937_spk1 seg3 z1+2  0.55s  elapsed 53.1 min, left ~20 min  GPU peak 1.9 GB
+[700/900] 3385730_spk0 -> 3433042_spk1 seg5 z3+4  0.58s  elapsed 54.2 min, left ~15 min  GPU peak 1.9 GB
+[750/900] 3385730_spk1 -> 3433042_spk0 seg3 z1+2  0.63s  elapsed 55.2 min, left ~11 min  GPU peak 1.9 GB
+[800/900] 3413937_spk0 -> 3413937_spk1 seg5 z3+4  0.97s  elapsed 56.6 min, left ~7 min  GPU peak 1.9 GB
+[850/900] 3413937_spk1 -> 3433042_spk0 seg3 z1+2  0.66s  elapsed 57.5 min, left ~3 min  GPU peak 1.9 GB
+[900/900] 3433042_spk0 -> 3433042_spk1 seg5 z3+4  0.48s  elapsed 58.5 min, left ~0 min  GPU peak 1.9 GB
+done: 900 conversions, 45 pairs x 5 segments x 4 noises (batch 2); velocities 6.3 GB in /home/udit.tatia/anon-bench/trajectory/pairs_combined_2/pairs; index.csv; GPU peak 1.9 GB
