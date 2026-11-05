@@ -1,8 +1,8 @@
 # Aspect 1: per-denoising-step mutual information (speaker S, content C) in Seed-VC
 
 Implementation of `Research Exps/Aspect 1.md`. Everything here is a LOWER BOUND of the mutual information in nats,
-evaluated on held-out data; see "Caveats" at the end. Status 2026-11-04: code complete and tested on synthetic data
-and on a 12-output local run; the real run waits for the dataset decision (section 2).
+evaluated on held-out data; see "Caveats" at the end. Status 2026-11-05: the DISPLACE run is done (job 15902,
+generation + features; analysis rerun with calibrated estimators as job 16117) and read in section 7.
 
 ## 1. Pipeline
 
@@ -111,3 +111,81 @@ ci_hi, null_mean, null_sd, null_p, ceiling, frac, exceeds_ceiling, H, CE, N, acc
   ground truth. The independent-target draw is part of the threat model (a pairing-aware attacker is another one).
 - ECAPA-TDNN (speechbrain) is not installed anywhere; the second ASV view is CAM++ for now. Installing speechbrain
   on the cluster login node would add it (`features.py` gets a fourth class).
+
+## 7. Results on DISPLACE-M (jobs 15902 + 16117, read 2026-11-05)
+
+Files: `results/displace/results/` (`results.csv`, `design.json`, the three plots, `residual_check.txt`);
+the first, uncalibrated analysis is kept in `results/displace/results_v1/` for the before/after comparison.
+Run: 120 source speakers, 1,796 utterances x 3 seeds = 5,388 outputs, steps k = 0, 3, 6, 10, 15, 20, 25, 30;
+closed-set split 539 test utterances (1,617 test rows), open-set split 36 test speakers; 368 estimates,
+0 above their ceiling (52 in the first analysis), permutation nulls -0.017 +- 0.004 nats (p = 0.01) for every
+generated row of the four waveform encoders, pure-noise rows 0.0.
+
+Source speaker S, classifier bound, linear probe, closed set, nats (accuracy among 120 speakers, chance 0.8 %):
+
+| Y | CAM++ | WavLM-SV | XLS-R | Whisper | melstat (raw x_t) |
+|---|---|---|---|---|---|
+| original audio (ceiling) | 4.50 (92.6 %) | 3.54 (66.8 %) | 3.14 (61.4 %) | 2.17 (38.4 %) | - |
+| k = 0, t = 0 | 0.65 (13.0 %) | 0.12 (3.5 %) | 0.31 (5.2 %) | 0.97 (15.4 %) | -0.02 (0.9 %) |
+| k = 3, t = 0.10 | 0.97 (16.8 %) | 0.24 (3.5 %) | 0.47 (8.5 %) | 1.10 (18.4 %) | -0.02 |
+| k = 6, t = 0.20 | 1.16 (19.5 %) | 0.37 (5.8 %) | 0.51 (8.9 %) | 1.16 (19.1 %) | -0.02 |
+| k = 10, t = 0.33 | 1.18 (19.7 %) | 0.38 (6.1 %) | 0.60 (12.2 %) | 1.16 (19.0 %) | -0.02 |
+| k = 15 .. 30 | 1.14-1.17 (19-20 %) | 0.38-0.39 (6-7 %) | 0.60-0.61 (10-12 %) | 1.15-1.16 (18-19 %) | -0.02 (0.2-1 %) |
+| pure noise vocoded | -0.02 (0.9 %) | -0.02 (1.5 %) | -0.03 (1.1 %) | -0.01 (1.1 %) | - |
+
+Bootstrap CI (200 speaker resamples) at k = 30: CAM++ 1.00-1.33, WavLM 0.31-0.47. Open-set InfoNCE (N = 188 distinct
+utterances per batch, cap 5.24): CAM++ 0.21 (k 0) -> 0.47 (k 6) -> 0.41 (k 30), original 2.22; WavLM 0.18 -> 0.48
+-> 0.54, original 5.11. KSG on PCA-10 is ~0 for the generated outputs of the speaker encoders (not sensitive enough
+at ~540 points per seed) and 2.4 / 5.0 on the originals.
+
+Content C (Whisper embedding of the original; InfoNCE over N = 188, cap 5.24; KSG not a bound):
+
+| Y | Whisper InfoNCE | Whisper KSG | XLS-R InfoNCE | melstat InfoNCE |
+|---|---|---|---|---|
+| original audio | 5.21 | 5.04 | 1.55 | - |
+| k = 0 | 4.88 | 2.23 | 1.01 | 0.06 |
+| k = 3 | 4.94 | 2.46 | 1.34 | 0.09 |
+| k = 6 | 4.95 | 2.57 | 1.10 | 0.19 |
+| k = 10 .. 30 | 4.94-4.99 | 2.65-2.71 | 1.21-1.38 | 0.23-0.25 |
+| pure noise vocoded | 0.94 | 0.58 | 0.28 | - |
+
+Reading (plain words):
+
+1. **The voice is removed; what remains is a speaker-correlated signal that a content encoder sees just as well.**
+   On the original audio the speaker encoder CAM++ identifies 93 % of the speakers (4.5 nats) and Whisper only 38 %
+   (2.2 nats). On every generated output, from step 0 to step 30, both land at the same 19 % (1.16 nats). The
+   residual check (`residual_check.py`, output in `results/residual_check.txt`) makes this explicit: after removing
+   from the CAM++ embedding everything a ridge regression on the Whisper embedding of the same clip explains, the
+   originals keep 1.86 nats (51 % accuracy) of speaker information and the outputs keep 0.00 at every step
+   (1-2 % accuracy, chance 0.8 %). So the part of the speaker identity that only a speaker encoder reads (timbre)
+   is gone from the first step on; the 1.2 nats that are left are readable through the content channel. On
+   DISPLACE that channel includes the topic (every speaker talks about their own things), speaking rate and
+   prosody carried by the XLS-R content condition. Which of these it is needs the crossed design (section 2, VCTK).
+2. **Whatever leaks, leaks through the conditioning and is in place by step 6.** The one-step estimate at t = 0 is
+   the model's prediction from the condition alone (content features of the source + the target's prompt), and it
+   already carries 0.65 nats (CAM++); steps 3-6 add the rest (1.16) and steps 6-30 add nothing. The later steps,
+   which the step grids show adding harmonic/timbre detail, do not add source-speaker information: they render the
+   TARGET's timbre. This matches the MSE result (straight path: each step adds the same kind of detail).
+3. **Content is complete from step 0.** Whisper InfoNCE is at 4.88 of the original's 5.21 nats at t = 0 and
+   4.94-4.99 afterwards; the KSG estimate rises until k = 10 (2.23 -> 2.71) and is flat afterwards. 0.94 nats of the
+   content score is clip duration (the pure-noise rows, vocoded at the utterance's length, reach 0.94), so the true
+   noise floor for C is 0.9, not 0.
+4. **The raw mel state x_t carries nothing readable by first and second moments** (melstat -0.02 at every step for
+   S, 0.06 -> 0.25 for C, the latter again mostly duration). I(S; x_t) itself is not estimated this way; the
+   one-step estimate is the usable view.
+5. **Leakage/utility plot** (`leak_vs_util.png`, WavLM leak fraction vs Whisper content fraction): all steps sit at
+   leak 0.03-0.11 of the original, utility 0.94-0.96; there is no step with less leakage at equal utility, so an
+   early stop of the sampler is not a privacy knob.
+
+Estimator notes for the write-up:
+- `cond = T` rows (I(S; Y | T)): the accuracies are unchanged by the target label (CAM++ 19.9 % vs 19.5 % at k = 6),
+  i.e. the target voice tells nothing about the source, as the independent draw guarantees. Their `I_hat` values are
+  shifted by a constant -1.4 nats because the plug-in H(S | T) from 3,770 training rows over 120 x 36 cells is biased
+  low (3.38 vs H(S) = 4.77); use the accuracy or `H(S) - CE`, not that column. (Fix if needed: H(S|T) = H(S) under
+  the independent draw, or a bias-corrected entropy.)
+- MLP probes are weaker than linear ones on the outputs (CAM++ 0.75 vs 1.16; WavLM and XLS-R ~0): with 3.8k training
+  rows of a weak signal the validation early stop halts the MLP before it learns. The reported bound is the maximum
+  over probes, i.e. the linear one. On the originals both probes agree (4.50 / 4.50).
+- InfoNCE nulls use 10 shuffles, so their smallest p is 1/11 = 0.09; the classifier nulls use 100 (p = 0.01).
+- Before/after calibration (v1 -> v2): 52 -> 0 ceiling violations, CAM++ k = 30 linear 0.63 -> 1.16 nats at the
+  same ~19 % accuracy (v1 under-counted because the probe was over-confident), Whisper InfoNCE C -15 -> 4.9.

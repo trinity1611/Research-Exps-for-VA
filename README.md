@@ -3,7 +3,7 @@
 Research work for the voice-anonymization publication, separate from the pipeline/benchmark work (repo
 trinity1611/Voice-Anonymization). This repo: trinity1611/Research-Exps-for-VA. Large data stays outside the repo and
 outside OneDrive: laptop `C:\anon-local`, cluster `~/anon-bench`. Setup and cluster usage: `CLAUDE.md`.
-Written 2026-11-04, last updated 2026-11-04 (evening: trajectory sets 1 and 2 finished, results fetched).
+Written 2026-11-04, last updated 2026-11-05 (Aspect 1 DISPLACE results read; all three experiments done).
 
 **Starting a new Claude Code session**: clone this repo anywhere (the pipeline code it needs is in `pipeline/`), open
 Claude Code in the clone, and say "read README.md and continue with <task>". Section 0 lists what is pending.
@@ -16,7 +16,8 @@ stock DiT checkpoint, the Python environment, and the DISPLACE-M data.
 |---|---|---|---|
 | 15892 | trajectory set 2: 5 new conversations, 900 conversions, batch 2, then MSE | `~/anon-bench/trajectory/pairs_combined_2/` | DONE 18:02; results in `trajectory/results/pairs_combined_2/` |
 | 15901 (replaced 15893) | MSE per step of trajectory set 1 (3,800 conversions) | `~/anon-bench/trajectory/pairs_combined/mse/` | DONE 18:00; results in `trajectory/results/pairs_combined/` |
-| 15902 (replaced 15896) | Aspect 1 MI run on DISPLACE (manifest, 5,388 outputs, features, analysis), 12 h limit | `~/anon-bench/aspect1_mi/runs/displace/results/` | RUNNING on n3 since ~14:30; `tail slurm_aspect1_mi_15902.out`; then fetch `results/*` into `aspect1_mi/results/displace/` |
+| 15902 (replaced 15896) | Aspect 1 MI run on DISPLACE (manifest, 5,388 outputs, features, analysis), 12 h limit | `~/anon-bench/aspect1_mi/runs/displace/` | DONE 22:43 (n3); first analysis had estimator defects (kept as `results_v1`) |
+| 16117 | Aspect 1 analysis stage rerun with calibrated estimators (`STAGES=analyze`) | `~/anon-bench/aspect1_mi/runs/displace/results/` | DONE 2026-11-05 14:26; results in `aspect1_mi/results/displace/results/`, read in `aspect1_mi/README.md` section 7 |
 
 Interpretation of the MSE curves: `trajectory/results/README.md` (straight path, noise-independent, spread = loudness).
 Storage incident 2026-11-04 afternoon: the NFS home (`192.168.1.254:/home`, 6-8 MB/s, latency-bound) stalled all
@@ -178,11 +179,25 @@ originals; `analyze.py` computes lower bounds I(S;Y_t), I(S;Y_t|T), I(C;Y_t) wit
 and KSG estimators, ceilings on the original audio, permutation nulls and speaker-bootstrap CIs. Data: DISPLACE-M
 (120 source speakers x up to 15 stretches of 4-8 s, 36 pool speakers); since no two speakers read the same sentence,
 content C is continuous (Whisper embedding of the original). Synthetic tests: `aspect1_mi/tests/test_estimators.py`
-(17 checks pass). Cluster job: `aspect1_mi/aspect1.sbatch` (job 15896 queued 2026-11-04).
+(17 checks pass). Cluster jobs: 15902 (generation + features + first analysis, 2026-11-04), 16117 (analysis rerun
+with validation early stop + temperature calibration, 2026-11-05).
+
+Result (`aspect1_mi/README.md` section 7, `aspect1_mi/results/displace/results/`): on the original audio CAM++
+identifies 93 % of the 120 speakers (4.5 nats) and Whisper 38 % (2.2); on every generated output, from the one-step
+estimate at t = 0 to the final output, both land at 19 % (1.16 nats, CI 1.0-1.3), rising from 0.65 at k = 0 to 1.16
+by k = 6 and flat afterwards. Removing from CAM++ what Whisper explains leaves 1.9 nats on the originals and 0.0 on the
+outputs at every step (`residual_check.py`): the timbre is gone from the first step on, and the residue is a
+speaker-correlated signal in the content channel (topic / speaking rate / prosody via the XLS-R condition; DISPLACE
+cannot separate these, a crossed VCTK run can). Content is complete from step 0 (Whisper InfoNCE 4.9 of 5.2 nats;
+0.9 of that is clip duration). The raw mel state's moments carry nothing. No step has less leakage at equal utility.
 
 ## 8. Open points
 
-- Read the results of job 15902 (Aspect 1 MI curves) when it finishes; the MSE of both trajectory sets is done and written up.
+- Aspect 1 on DISPLACE is read (section 7). The speaker residue in the outputs is content-channel information; to
+  tell topic from prosody/speaking rate a crossed design is needed (VCTK, same sentences for every speaker; cost in
+  `aspect1_mi/README.md` section 4). Estimator details to tidy if the numbers go into the paper: `cond = T` I_hat
+  column is shifted by the plug-in H(S|T) bias (use accuracies), MLP probes under-train on the outputs, InfoNCE nulls
+  use 10 shuffles (p >= 0.09). The cluster log of job 16117 (`slurm_aspect1_mi_16117.out`) is not fetched yet.
 - Tell the colleague: GPU peak was 1.9 GB at batch 2, so if "under 45 GB" meant disk, set 2 could be 10 conversations (`N_CONV=10`).
 - Plot step grids for z2-z4 / set 2 if wanted. Not written yet: a check that every pair file has an index row (a kill
   between writing the npz and its row would leave a file the MSE stage never sees).
