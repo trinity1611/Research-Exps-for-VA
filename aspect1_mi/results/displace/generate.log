@@ -1,0 +1,86 @@
+Warning: Skipped loading some keys due to shape mismatch: {'estimator.input_pos'}
+cfm loaded
+Warning: Skipped loading some keys due to shape mismatch: {'extra_codebooks.0.weight', 'extra_codebook_mask_tokens.0'}
+length_regulator loaded
+Loading weights from nvidia/bigvgan_v2_22khz_80band_fmax8k_256x
+Removing weight norm...
+engine: steps=30 cfg=1.0 n_mels=80 sigma_min=1e-06 prompt<= 10.0s  grid k=[0, 3, 6, 10, 15, 20, 25, 30]  seeds=3 batch=3
+1796 source utterances, 120 source speakers; target pool 36 speakers (disjoint)
+[25/1796] 75 outputs, 1.6 min, left ~110 min  GPU peak 1.6 GB
+[50/1796] 150 outputs, 3.1 min, left ~110 min  GPU peak 1.6 GB
+[75/1796] 225 outputs, 5.0 min, left ~115 min  GPU peak 1.6 GB
+[100/1796] 300 outputs, 7.4 min, left ~125 min  GPU peak 1.6 GB
+[125/1796] 375 outputs, 17.6 min, left ~235 min  GPU peak 1.6 GB
+[150/1796] 450 outputs, 18.8 min, left ~206 min  GPU peak 1.6 GB
+[175/1796] 525 outputs, 20.1 min, left ~186 min  GPU peak 1.6 GB
+[200/1796] 600 outputs, 21.4 min, left ~171 min  GPU peak 1.7 GB
+[225/1796] 675 outputs, 74.3 min, left ~519 min  GPU peak 1.7 GB
+[250/1796] 750 outputs, 86.6 min, left ~536 min  GPU peak 1.7 GB
+[275/1796] 825 outputs, 87.9 min, left ~486 min  GPU peak 1.7 GB
+[300/1796] 900 outputs, 89.4 min, left ~446 min  GPU peak 1.7 GB
+[325/1796] 975 outputs, 91.0 min, left ~412 min  GPU peak 1.7 GB
+[350/1796] 1050 outputs, 92.4 min, left ~382 min  GPU peak 1.7 GB
+[375/1796] 1125 outputs, 93.9 min, left ~356 min  GPU peak 1.7 GB
+[400/1796] 1200 outputs, 95.3 min, left ~333 min  GPU peak 1.7 GB
+[425/1796] 1275 outputs, 96.5 min, left ~311 min  GPU peak 1.7 GB
+[450/1796] 1350 outputs, 98.1 min, left ~293 min  GPU peak 1.7 GB
+[475/1796] 1425 outputs, 99.4 min, left ~276 min  GPU peak 1.7 GB
+[500/1796] 1500 outputs, 100.8 min, left ~261 min  GPU peak 1.7 GB
+[525/1796] 1575 outputs, 102.3 min, left ~248 min  GPU peak 1.7 GB
+[550/1796] 1650 outputs, 104.0 min, left ~236 min  GPU peak 1.7 GB
+[575/1796] 1725 outputs, 105.3 min, left ~224 min  GPU peak 1.7 GB
+[600/1796] 1800 outputs, 106.5 min, left ~212 min  GPU peak 1.7 GB
+[625/1796] 1875 outputs, 107.8 min, left ~202 min  GPU peak 1.7 GB
+[650/1796] 1950 outputs, 109.2 min, left ~193 min  GPU peak 1.7 GB
+[675/1796] 2025 outputs, 110.2 min, left ~183 min  GPU peak 1.7 GB
+[700/1796] 2100 outputs, 111.1 min, left ~174 min  GPU peak 1.7 GB
+[725/1796] 2175 outputs, 112.3 min, left ~166 min  GPU peak 1.7 GB
+[750/1796] 2250 outputs, 113.4 min, left ~158 min  GPU peak 1.7 GB
+[775/1796] 2325 outputs, 114.4 min, left ~151 min  GPU peak 1.7 GB
+[800/1796] 2400 outputs, 115.6 min, left ~144 min  GPU peak 1.7 GB
+[825/1796] 2475 outputs, 116.8 min, left ~137 min  GPU peak 1.7 GB
+min value is  tensor(-1.0012, device='cuda:0')
+[850/1796] 2550 outputs, 118.1 min, left ~131 min  GPU peak 1.7 GB
+[875/1796] 2625 outputs, 119.3 min, left ~126 min  GPU peak 1.7 GB
+[900/1796] 2700 outputs, 120.6 min, left ~120 min  GPU peak 1.7 GB
+[925/1796] 2775 outputs, 122.9 min, left ~116 min  GPU peak 1.7 GB
+[950/1796] 2850 outputs, 124.7 min, left ~111 min  GPU peak 1.7 GB
+[975/1796] 2925 outputs, 126.2 min, left ~106 min  GPU peak 1.7 GB
+[1000/1796] 3000 outputs, 127.8 min, left ~102 min  GPU peak 1.7 GB
+[1025/1796] 3075 outputs, 129.4 min, left ~97 min  GPU peak 1.7 GB
+[1050/1796] 3150 outputs, 130.8 min, left ~93 min  GPU peak 1.7 GB
+[1075/1796] 3225 outputs, 132.4 min, left ~89 min  GPU peak 1.7 GB
+[1100/1796] 3300 outputs, 133.7 min, left ~85 min  GPU peak 1.7 GB
+[1125/1796] 3375 outputs, 135.0 min, left ~81 min  GPU peak 1.7 GB
+max value is  tensor(1.0062, device='cuda:0')
+max value is  tensor(1.0063, device='cuda:0')
+[1150/1796] 3450 outputs, 136.5 min, left ~77 min  GPU peak 1.7 GB
+[1175/1796] 3525 outputs, 137.7 min, left ~73 min  GPU peak 1.7 GB
+[1200/1796] 3600 outputs, 138.9 min, left ~69 min  GPU peak 1.7 GB
+[1225/1796] 3675 outputs, 140.2 min, left ~65 min  GPU peak 1.7 GB
+[1250/1796] 3750 outputs, 141.3 min, left ~62 min  GPU peak 1.7 GB
+[1275/1796] 3825 outputs, 142.4 min, left ~58 min  GPU peak 1.7 GB
+[1300/1796] 3900 outputs, 143.5 min, left ~55 min  GPU peak 1.7 GB
+min value is  tensor(-1.0114, device='cuda:0')
+max value is  tensor(1.0057, device='cuda:0')
+[1325/1796] 3975 outputs, 144.5 min, left ~51 min  GPU peak 1.7 GB
+[1350/1796] 4050 outputs, 145.5 min, left ~48 min  GPU peak 1.7 GB
+[1375/1796] 4125 outputs, 146.5 min, left ~45 min  GPU peak 1.7 GB
+[1400/1796] 4200 outputs, 147.4 min, left ~42 min  GPU peak 1.7 GB
+[1425/1796] 4275 outputs, 148.5 min, left ~39 min  GPU peak 1.7 GB
+[1450/1796] 4350 outputs, 149.5 min, left ~36 min  GPU peak 1.7 GB
+[1475/1796] 4425 outputs, 150.5 min, left ~33 min  GPU peak 1.7 GB
+[1500/1796] 4500 outputs, 151.5 min, left ~30 min  GPU peak 1.7 GB
+[1525/1796] 4575 outputs, 152.5 min, left ~27 min  GPU peak 1.7 GB
+[1550/1796] 4650 outputs, 153.5 min, left ~24 min  GPU peak 1.7 GB
+[1575/1796] 4725 outputs, 154.4 min, left ~22 min  GPU peak 1.7 GB
+[1600/1796] 4800 outputs, 155.3 min, left ~19 min  GPU peak 1.7 GB
+[1625/1796] 4875 outputs, 156.3 min, left ~16 min  GPU peak 1.7 GB
+[1650/1796] 4950 outputs, 157.2 min, left ~14 min  GPU peak 1.7 GB
+[1675/1796] 5025 outputs, 162.2 min, left ~12 min  GPU peak 1.7 GB
+[1700/1796] 5100 outputs, 163.1 min, left ~9 min  GPU peak 1.7 GB
+[1725/1796] 5175 outputs, 164.1 min, left ~7 min  GPU peak 1.7 GB
+[1750/1796] 5250 outputs, 165.3 min, left ~4 min  GPU peak 1.7 GB
+[1775/1796] 5325 outputs, 166.2 min, left ~2 min  GPU peak 1.7 GB
+[1796/1796] 5388 outputs, 167.1 min, left ~0 min  GPU peak 1.7 GB
+done: 5388 outputs (0 utterances skipped); metadata /home/udit.tatia/anon-bench/aspect1_mi/runs/displace/metadata.csv
