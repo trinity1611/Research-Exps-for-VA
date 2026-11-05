@@ -1,7 +1,7 @@
 # Results so far (2026-10-29 to 2026-11-05)
 
 What has been done on the research side of the voice-anonymization work and what came out of it. Written for
-someone who has not followed the sessions. `README.md` is the operational handover (paths, jobs, practicalities);
+someone who has not followed the sessions. `docs/HANDOVER.md` is the operational handover (paths, jobs, practicalities);
 the per-folder READMEs hold the details. All numbers below are in the committed result files.
 
 ## The question
@@ -14,7 +14,7 @@ the source speaker's identity and the spoken content become readable in the outp
 
 ## Experiment 1: saving the trajectories (done 2026-10-29)
 
-`trajectory/save_trajectories.py` runs the pipeline unchanged on whole DISPLACE-M recordings and saves every
+`experiments/trajectory/save_trajectories.py` runs the pipeline unchanged on whole DISPLACE-M recordings and saves every
 intermediate mel state (31 states x 80 bands x frames, float16) of every diarized turn, optionally with the two
 guidance branches of the velocity. Verified: saving changes nothing (audio bit-identical) and the saved velocities
 reproduce the states to 0.5 %.
@@ -31,7 +31,7 @@ Cost on the RTX PRO 6000: 0.62 s GPU per 20 s segment, 8.5 MB of velocities per 
 The colleague's protocol: pick conversations, diarize them into speakers, take 5 source segments of 12-20 s per
 speaker and a reference clip, convert every segment of speaker A into the voice of speaker B for all unordered
 pairs, with the same 4 fixed Gaussian noises starting every conversion, and save the per-step velocities.
-`trajectory/pair_experiment.py` does the selection and the run, `trajectory/pair_mse.py` the analysis.
+`experiments/trajectory/pair_experiment.py` does the selection and the run, `experiments/trajectory/pair_mse.py` the analysis.
 
 | set | conversations | speakers | pairs | conversions | stored |
 |---|---|---|---|---|---|
@@ -39,7 +39,7 @@ pairs, with the same 4 fixed Gaussian noises starting every conversion, and save
 | `pairs_combined_2` | 5 new ones | 10 | 45 | 900 | 6.9 GB |
 
 MSE_k = mean over the mel of (x_k - x_30)^2 for k = 0..30, x_k rebuilt from the saved velocities
-(`trajectory/results/README.md`, `trajectory/results/<set>/mse/`):
+(`experiments/trajectory/results/README.md`, `experiments/trajectory/results/<set>/mse/`):
 
 | step k | 0 | 5 | 10 | 15 | 20 | 25 | 29 | 30 |
 |---|---|---|---|---|---|---|---|---|
@@ -59,12 +59,12 @@ Findings:
    loudness** (corr 1.000 between MSE_0 and the energy of the final mel). Normalizing by MSE_0 collapses both sets
    onto one line.
 4. **Batching two noises per DiT pass changes nothing** (within 0.07 %); GPU peak 1.9 GB.
-5. Step grids (`trajectory/step_grids/`): steps 1-5 noise, 6-15 coarse layout (pauses, word boundaries), 16-25
+5. Step grids (`experiments/trajectory/figures/step_grids/`): steps 1-5 noise, 6-15 coarse layout (pauses, word boundaries), 16-25
    harmonic striations (pitch and timbre of the target), 26-30 refinement.
 
 ## Experiment 3: at which step does speaker identity / content appear? (Aspect 1, done 2026-11-05)
 
-`aspect1_mi/` (spec `Aspect 1.md`). For 120 DISPLACE-M source speakers (1,796 utterances of 4-8 s), each utterance
+`experiments/aspect1_mi/` (spec `docs/specs/aspect1_mi.md`). For 120 DISPLACE-M source speakers (1,796 utterances of 4-8 s), each utterance
 is converted into a target voice drawn independently from a disjoint pool of 36 speakers, with 3 noise seeds
 (5,388 outputs). At steps k = 0, 3, 6, 10, 15, 20, 25, 30 the model's one-step estimate of the clean result,
 xhat = x_t + (1 - t) v, is vocoded and embedded with four independent encoders (CAM++ and WavLM-SV for speaker,
@@ -72,8 +72,8 @@ Whisper-small and XLS-R for content). On each embedding a probe is trained to id
 content, to match the output to its original among 188 candidates) on held-out utterances; its score, converted to
 nats, is a lower bound on the mutual information between the step and the speaker (or content). Controls: the same
 probes on the original recordings (ceiling), on vocoded pure noise (floor), with shuffled labels (null), and
-speaker bootstraps (CI). Details and all tables: `aspect1_mi/README.md` section 7; files
-`aspect1_mi/results/displace/results/`.
+speaker bootstraps (CI). Details and all tables: `experiments/aspect1_mi/README.md` section 7; files
+`experiments/aspect1_mi/results/displace/results/`.
 
 Speaker identification among 120 speakers (linear probe, held-out utterances; chance 0.8 %):
 
@@ -91,7 +91,7 @@ Findings:
 1. **The voice is removed from the first step on; what remains is speaker-correlated information in the content
    channel.** On real recordings the speaker encoder is far ahead of the content encoder (93 % vs 38 %). On every
    output they land at the same 19 %. Removing from the CAM++ embedding everything the Whisper embedding of the same
-   clip explains (`aspect1_mi/residual_check.py`) leaves 51 % accuracy on the originals and chance (1-2 %) on the
+   clip explains (`experiments/aspect1_mi/residual_check.py`) leaves 51 % accuracy on the originals and chance (1-2 %) on the
    outputs at every step: the part of identity only a speaker encoder reads, the timbre, is gone. The 1.2 nats
    that survive are things a content encoder also sees: on DISPLACE, the topic (each speaker talks about their own
    things), speaking rate and prosody carried by the XLS-R content condition. Telling topic from prosody needs a
@@ -125,9 +125,9 @@ outputs and sit below the linear ones; InfoNCE nulls use 10 shuffles (p >= 0.09)
 
 | what | repo | cluster / laptop |
 |---|---|---|
-| trajectory code and results | `trajectory/`, `trajectory/results/` | `~/anon-bench/trajectory/{runs,pairs_combined,pairs_combined_2}` (data) |
-| Aspect 1 code and results | `aspect1_mi/`, `aspect1_mi/results/displace/` | `~/anon-bench/aspect1_mi/runs/displace` (gen, features); laptop `C:\anon-local\aspect1_displace` (features) |
+| trajectory code and results | `experiments/trajectory/`, `experiments/trajectory/results/` | `~/anon-bench/trajectory/{runs,pairs_combined,pairs_combined_2}` (data) |
+| Aspect 1 code and results | `experiments/aspect1_mi/`, `experiments/aspect1_mi/results/displace/` | `~/anon-bench/aspect1_mi/runs/displace` (gen, features); laptop `C:\anon-local\aspect1_displace` (features) |
 | pipeline snapshot the experiments run on | `pipeline/` (Voice-Anonymization 370b5c9) | |
-| handover, jobs, practicalities | `README.md` | |
+| handover, jobs, practicalities | `docs/HANDOVER.md` | |
 
 Audio, npz, models and datasets are never committed.

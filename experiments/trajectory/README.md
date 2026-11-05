@@ -4,7 +4,7 @@ The anonymization pipelines (combined and L) convert speech with Seed-VC, a diff
 matching. For every piece of speech it converts, it starts from random noise shaped like a mel spectrogram and moves it
 in a fixed number of Euler steps (30 for combined, 25 for L) to the converted speech, steered by the content of the
 original speech and by the target voice. A **trajectory** is that sequence of mel spectrograms, from step 0 (noise) to
-the last step (the speech the vocoder turns into audio). `example_trajectory.png` shows steps 0, 7, 15, 23 and 30 of one
+the last step (the speech the vocoder turns into audio). `figures/example_trajectory.png` shows steps 0, 7, 15, 23 and 30 of one
 turn.
 
 ## Files

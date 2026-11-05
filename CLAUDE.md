@@ -3,8 +3,8 @@
 This repo holds the RESEARCH side of the "Voice to EMR" Phase A voice-anonymization work: analyses of the Seed-VC
 flow-matching model used by the anonymization pipeline. The pipeline itself (the product) is a separate repo,
 github.com/trinity1611/Voice-Anonymization, and this code depends on it (see Setup). Start every session by reading
-`README.md` (the handover: what was done, where the data is, which jobs are running) and the README of the folder
-you work in.
+`docs/HANDOVER.md` (what was done, where the data is, which jobs are running), `docs/RESULTS.md` (the findings) and
+the README of the experiment folder you work in.
 
 ## Standing rules from the user
 - Never push to GitHub on your own; ask first, every time. Never commit audio, npz, models or datasets (`.gitignore`).
@@ -48,12 +48,22 @@ you work in.
 - Windows scp does not expand `{a,b}`; pack with tar on the cluster, then scp the archive. Many-GB outputs stay on the
   cluster; fetch samples only, into `C:\anon-local`.
 - Job files read variables via `sbatch --export=ALL,VAR=value ...`; every job prints its settings in the first log line.
-- Uploading this code: `scp -r <folder> udit.tatia@10.16.63.40:~/anon-bench/` so that `~/anon-bench/trajectory` and
-  `~/anon-bench/aspect1_mi` mirror the folders here.
+- Uploading this code: `scp -r experiments/<folder> udit.tatia@10.16.63.40:~/anon-bench/` so that
+  `~/anon-bench/trajectory` and `~/anon-bench/aspect1_mi` mirror `experiments/trajectory` and `experiments/aspect1_mi`
+  (the cluster layout is flat, next to its own `src/`; the sbatch files assume it).
 
 ## Layout
-- `README.md`: handover for a new session (status, paths, pending jobs, numbers).
-- `trajectory/`: saving Seed-VC sampling trajectories; the speaker-pair protocol (`pair_experiment.py`), MSE per step
-  (`pair_mse.py`), step-grid plots. Results on the cluster: `~/anon-bench/trajectory/pairs_combined{,_2}`.
-- `aspect1_mi/`: per-denoising-step mutual information (speaker, content), spec in `Aspect 1.md`; tests in `tests/`.
-- Result files (csv, json, png, md) are committed; everything heavy is ignored.
+- `README.md`: short: what the repo is, folder map, how to start a session.
+- `docs/HANDOVER.md`: handover for a new session (status, jobs, cluster paths, practicalities, numbers).
+- `docs/RESULTS.md`: consolidated findings of all experiments, for a new reader.
+- `docs/specs/`: experiment specs (`aspect1_mi.md` = the Aspect 1 spec).
+- `pipeline/`: snapshot of the pipeline code (Voice-Anonymization 370b5c9), unchanged.
+- `experiments/trajectory/`: experiments 1-2: saving Seed-VC sampling trajectories; the speaker-pair protocol
+  (`pair_experiment.py`), MSE per step (`pair_mse.py`), step-grid plots; `figures/`; `results/` (both pair sets).
+  Data on the cluster: `~/anon-bench/trajectory/{runs,pairs_combined,pairs_combined_2}`.
+- `experiments/aspect1_mi/`: experiment 3: per-denoising-step mutual information (speaker, content); estimator
+  library `mi/`, `tests/`, `results/displace/` (`results` calibrated, `results_v1` first analysis).
+- Reserved for later work, create only when it starts: `experiments/mechanism/` (training-free mechanism on the
+  XLS-R condition, sigma sweep), `experiments/entanglement_vctk/` (crossed design, kappa_ent), `experiments/estimation/`
+  (verification / Fano floors vs attackers), `theory/` (proof notes, synthetic E1), `docs/framework/` (the proposal).
+- Result files (csv, json, png, md, txt) are committed; everything heavy is ignored.

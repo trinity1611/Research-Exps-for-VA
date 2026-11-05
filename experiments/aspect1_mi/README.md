@@ -1,6 +1,6 @@
 # Aspect 1: per-denoising-step mutual information (speaker S, content C) in Seed-VC
 
-Implementation of `Research Exps/Aspect 1.md`. Everything here is a LOWER BOUND of the mutual information in nats,
+Implementation of `docs/specs/aspect1_mi.md`. Everything here is a LOWER BOUND of the mutual information in nats,
 evaluated on held-out data; see "Caveats" at the end. Status 2026-11-05: the DISPLACE run is done (job 15902,
 generation + features; analysis rerun with calibrated estimators as job 16117) and read in section 7.
 
@@ -81,11 +81,11 @@ Target pool speakers must be disjoint from the source speakers (`generate.py` re
 ## 4. Running
 
 ```bash
-python "Research Exps/aspect1_mi/tests/test_estimators.py"                      # synthetic checks (CPU, ~3 min)
+python experiments/aspect1_mi/tests/test_estimators.py                          # synthetic checks (CPU, ~3 min)
 python generate.py --manifest m.csv --pool pool.csv --out OUT --seedvc-root repos/seed-vc --profile configs/pipelines/combined.env --seeds 3 --batch 3
 python features.py --out OUT --manifest m.csv --noise-control
 python analyze.py --out OUT                                                      # --quick for a plumbing test
-sbatch --export=ALL,MANIFEST=...,POOL=...,TAG=vctk trajectory-style job: Research\ Exps/aspect1_mi/aspect1.sbatch
+cd ~/anon-bench && sbatch --export=ALL,MANIFEST=...,POOL=...,TAG=vctk aspect1_mi/aspect1.sbatch   # cluster layout is flat
 ```
 
 Local plumbing test (2026-11-04, laptop GPU 1.8 GB peak): 6 utterances x 2 seeds x 8 steps = 96 step waveforms in

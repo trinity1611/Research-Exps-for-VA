@@ -1,5 +1,5 @@
 """Unit tests of the MI estimators on synthetic data with known answers (spec section 7). Run:
-    python "Research Exps/aspect1_mi/tests/test_estimators.py"
+    python experiments/aspect1_mi/tests/test_estimators.py
 Each test prints its numbers and asserts the spec's property; the script exits non-zero on the first failure."""
 import math, sys
 from pathlib import Path

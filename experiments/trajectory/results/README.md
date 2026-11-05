@@ -51,5 +51,5 @@ Findings (both sets, checked on `mse_per_conversion.csv`):
    memory; if 45 GB meant disk, set 2 could be 10 conversations (`N_CONV=10`).
 
 What the MSE curve cannot say: which steps carry speaker identity and which carry content. The step grids
-(`../step_grids/`) suggest layout/content in steps 6-15 and harmonic/timbre structure in steps 16-25; the Aspect 1
+(`../figures/step_grids/`) suggest layout/content in steps 6-15 and harmonic/timbre structure in steps 16-25; the Aspect 1
 run (`../../aspect1_mi/`) measures this with mutual-information estimates per step.
