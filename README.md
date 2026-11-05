@@ -10,6 +10,8 @@ Claude Code in the clone, and say "read README.md and continue with <task>". Sec
 `CLAUDE.md` lists what must exist on the machine besides the repo: the Seed-VC checkout with its model cache, the
 stock DiT checkpoint, the Python environment, and the DISPLACE-M data.
 
+Summary of all results so far, written for a new reader: `RESULTS.md`.
+
 ## 0. Pending at the time of writing (2026-11-04)
 
 | cluster job | what | output | status |
