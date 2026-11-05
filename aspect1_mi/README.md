@@ -62,9 +62,17 @@ Target pool speakers must be disjoint from the source speakers (`generate.py` re
 - Splits (`analyze.py`, seed 0, 30 % test): closed-set S classifier = utterance-disjoint (every speaker on both
   sides); open-set InfoNCE/KSG and the C classifier = speaker-disjoint. All seeds of an utterance stay together.
 - Continuous s for InfoNCE/KSG = WavLM-SV embedding of the ORIGINAL utterance.
-- Probes: linear softmax and 1-hidden-layer MLP (256), Adam 1e-3, weight decay 1e-4, 200 epochs, batch 256, at
-  every t. InfoNCE: two 256-64 MLP encoders + scaled dot product, N = 512, 50 epochs; held-out CE averaged over
-  50 random batches. KSG: k = 3 on PCA-10 of both sides (standardized).
+- Probes: linear softmax and 1-hidden-layer MLP (256), Adam 1e-3, weight decay 1e-4, up to 200 epochs, batch 256, at
+  every t. InfoNCE: two 256-64 MLP encoders + scaled dot product, N = 512, up to 50 epochs; held-out CE averaged over
+  50 random batches. KSG: k = 3 on PCA-10 of both sides (standardized), one noise seed at a time (mean over seeds).
+- Calibration (added 2026-11-05 after the first DISPLACE run): 15 % of the TRAINING rows (whole utterances, all
+  seeds together) are a validation set; the epoch with the lowest validation CE is kept and a softmax / score
+  temperature is fitted on it. Without this the probes were over-confident on held-out data: CE > H(S) and negative
+  "bounds" at 27 % closed-set accuracy (chance 0.8 %), InfoNCE at -15 nats, 52 of 368 estimates above their ceiling.
+  The test rows are never used for either choice, so the values remain held-out lower bounds.
+- Duplicates: the three seeds of one utterance share the source embedding s exactly. InfoNCE batches are therefore
+  drawn over distinct utterances (one random seed each, `_GroupBatches`), and KSG is evaluated per seed; otherwise
+  the negatives / k-NN counts contain exact copies of the positive and the estimates are wrong in both directions.
 - Nulls: labels / pairings shuffled on train and test, 100 shuffles (linear probe, cond None); CIs: 200 speaker
   bootstraps of the held-out CE (the probe is not retrained per resample).
 - Ceilings: the same estimator on the original audio; `frac = I_hat(Y_t) / I_hat(X)`; rows with `I_hat` above

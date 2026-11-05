@@ -44,6 +44,7 @@ def main():
     feats = {e: np.load(out / "features" / f"{e}.npz")["emb"] for e in a.encoders.split(",")}
     kind = np.array([r["kind"] for r in rows]); k_of = np.array([int(r["k"]) for r in rows])
     utt = np.array([r["utt_id"] for r in rows])
+    seed_of = np.array([r.get("seed", "") for r in rows])                  # noise seed of a gen row ("" for orig / noise)
     spk_names = sorted({r["src_spk"] for r in rows}); sent_names = sorted({r["sentence_id"] for r in rows})
     tgt_names = sorted({r["target_spk"] for r in rows if r["target_spk"]})
     S = np.array([spk_names.index(r["src_spk"]) for r in rows]); C = np.array([sent_names.index(r["sentence_id"]) for r in rows])
@@ -110,41 +111,43 @@ def main():
                 elif cond == "C":
                     oh = np.eye(len(sent_names), dtype=np.float32)[C]; ct, ce = oh[tr], oh[te]
                 for probe in ("linear", "mlp"):
-                    e = classifier_bound(F[tr], S[tr], F[te], S[te], probe=probe, cond_tr=ct, cond_te=ce, epochs=a.epochs)
+                    e = classifier_bound(F[tr], S[tr], F[te], S[te], probe=probe, cond_tr=ct, cond_te=ce, epochs=a.epochs, groups_tr=utt[tr])
                     lo, hi, _ = speaker_bootstrap(e.extra["ce_each"], S[te], n=a.n_boot)
                     rec = dict(base, estimator="classifier", probe=probe, target="S", cond=cond, I_hat=e.value, ci_lo=e.h - hi, ci_hi=e.h - lo,
                                H=e.h, CE=e.ce, N=len(te), acc=e.extra["acc"], null_mean=float("nan"), null_sd=float("nan"), null_p=float("nan"))
                     if probe == "linear" and cond == "None" and a.n_null > 0:
-                        nl = permutation_null(lambda l1, l2: classifier_bound(F[tr], l1, F[te], l2, probe="linear", epochs=max(10, a.epochs // 4)), S[tr], S[te], n=a.n_null)
+                        nl = permutation_null(lambda l1, l2: classifier_bound(F[tr], l1, F[te], l2, probe="linear", epochs=max(10, a.epochs // 4), groups_tr=utt[tr]), S[tr], S[te], n=a.n_null)
                         rec.update(null_mean=nl["null_mean"], null_sd=nl["null_sd"], null_p=p_value(e.value, nl["null"]))
                     add(**rec)
             # ---- discrete C, speaker-disjoint classifier
             tr = idx[~open_te[idx]]; te = idx[open_te[idx]]
             for probe in (("linear", "mlp") if discrete_c else ()):
-                e = classifier_bound(F[tr], C[tr], F[te], C[te], probe=probe, epochs=a.epochs)
+                e = classifier_bound(F[tr], C[tr], F[te], C[te], probe=probe, epochs=a.epochs, groups_tr=utt[tr])
                 lo, hi, _ = speaker_bootstrap(e.extra["ce_each"], S[te], n=a.n_boot)
                 rec = dict(base, estimator="classifier", probe=probe, target="C", cond="None", I_hat=e.value, ci_lo=e.h - hi, ci_hi=e.h - lo,
                            H=e.h, CE=e.ce, N=len(te), acc=e.extra["acc"], null_mean=float("nan"), null_sd=float("nan"), null_p=float("nan"))
                 if probe == "linear" and a.n_null > 0:
-                    nl = permutation_null(lambda l1, l2: classifier_bound(F[tr], l1, F[te], l2, probe="linear", epochs=max(10, a.epochs // 4)), C[tr], C[te], n=a.n_null)
+                    nl = permutation_null(lambda l1, l2: classifier_bound(F[tr], l1, F[te], l2, probe="linear", epochs=max(10, a.epochs // 4), groups_tr=utt[tr]), C[tr], C[te], n=a.n_null)
                     rec.update(null_mean=nl["null_mean"], null_sd=nl["null_sd"], null_p=p_value(e.value, nl["null"]))
                 add(**rec)
             # ---- continuous S (and continuous C when sentences are unique), open-set InfoNCE and KSG(PCA-10)
             if len(te) >= 4 and len(tr) >= 4:                                      # (real runs have thousands; 4 keeps plumbing tests alive)
                 for target, V in (("S", s_cont),) + ((("C", c_cont),) if not discrete_c else ()):
-                    e = infonce_bound(V[tr], F[tr], V[te], F[te], batch=min(a.batch, len(te)), epochs=max(5, a.epochs // 4))
+                    e = infonce_bound(V[tr], F[tr], V[te], F[te], batch=min(a.batch, len(te)), epochs=max(5, a.epochs // 4), groups_tr=utt[tr], groups_te=utt[te])
                     rec = dict(base, estimator="infonce", probe="separable", target=target, cond="None", I_hat=e.value, ci_lo=float("nan"), ci_hi=float("nan"),
                                H=e.h, CE=e.ce, N=e.extra["N"], acc=float("nan"), null_mean=float("nan"), null_sd=float("nan"), null_p=float("nan"))
                     if a.n_null > 0:
                         nn_ = max(3, a.n_null // 10)
                         rng = np.random.default_rng(1)
-                        null = [infonce_bound(V[tr][rng.permutation(len(tr))], F[tr], V[te][rng.permutation(len(te))], F[te], batch=min(a.batch, len(te)), epochs=max(3, a.epochs // 10)).value for _ in range(nn_)]
+                        null = [infonce_bound(V[tr][rng.permutation(len(tr))], F[tr], V[te][rng.permutation(len(te))], F[te], batch=min(a.batch, len(te)), epochs=max(3, a.epochs // 10), groups_tr=utt[tr], groups_te=utt[te]).value for _ in range(nn_)]
                         rec.update(null_mean=float(np.mean(null)), null_sd=float(np.std(null)), null_p=p_value(e.value, null))
                     add(**rec)
                     ptr, pte = pca(F[tr], F[te], dims=10); vtr, vte = pca(V[tr], V[te], dims=10)
-                    e = ksg(vte, pte, k=3)
-                    add(**dict(base, estimator="ksg", probe="pca10", target=target, cond="None", I_hat=e.value, ci_lo=float("nan"), ci_hi=float("nan"),
-                               H=float("nan"), CE=float("nan"), N=len(te), acc=float("nan"), null_mean=float("nan"), null_sd=float("nan"), null_p=float("nan")))
+                    # one seed at a time: the seeds of an utterance share s exactly, and k-NN counts on duplicates inflate KSG
+                    seeds_te = sorted(set(seed_of[te].tolist()))
+                    vals = [ksg(vte[seed_of[te] == sd], pte[seed_of[te] == sd], k=3).value for sd in seeds_te]
+                    add(**dict(base, estimator="ksg", probe="pca10", target=target, cond="None", I_hat=float(np.mean(vals)), ci_lo=float("nan"), ci_hi=float("nan"),
+                               H=float("nan"), CE=float("nan"), N=int(len(te) / len(seeds_te)), acc=float("nan"), null_mean=float("nan"), null_sd=float(np.std(vals)) if len(vals) > 1 else float("nan"), null_p=float("nan")))
         print(f"  {enc} done, {(time.time() - t0) / 60:.1f} min", flush=True)
 
     # ---- ceilings (same encoder / estimator / probe / target / cond on the ORIGINAL audio) and fractions
