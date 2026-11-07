@@ -135,7 +135,30 @@ def stage_gen(a):
         z = state["noise"][None, :, :T].expand(B, -1, -1).clone()
         t_span = torch.linspace(0, 1, n_timesteps + 1, device=mu.device)
         return self.solve_euler(z, x_lens, prompt, mu, style, f0, t_span, inference_cfg_rate)
-    type(cfm).inference = inference
+
+    def solve_euler(self, x, x_lens, prompt, mu, style, f0, t_span, inference_cfg_rate=0.5):
+        """Stock Euler solver made batch-safe (the time step and x_lens expanded to the batch), as in Aspect 1's generate.py."""
+        t = t_span[0]
+        prompt_len = prompt.size(-1)
+        prompt_x = torch.zeros_like(x); prompt_x[..., :prompt_len] = prompt[..., :prompt_len]
+        x[..., :prompt_len] = 0
+        if self.zero_prompt_speech_token:
+            mu[..., :prompt_len] = 0
+        for step in range(1, len(t_span)):
+            dt = t_span[step] - t_span[step - 1]
+            if inference_cfg_rate > 0:
+                stacked = self.estimator(torch.cat([x, x], 0), torch.cat([prompt_x, torch.zeros_like(prompt_x)], 0), torch.cat([x_lens, x_lens], 0),
+                                         t.reshape(1).expand(2 * x.size(0)), torch.cat([style, torch.zeros_like(style)], 0),
+                                         torch.cat([mu, torch.zeros_like(mu)], 0))
+                d_cond, d_unc = stacked.chunk(2, dim=0)
+                dphi_dt = (1.0 + inference_cfg_rate) * d_cond - inference_cfg_rate * d_unc
+            else:
+                dphi_dt = self.estimator(x, prompt_x, x_lens, t.reshape(1).expand(x.size(0)), style, mu)
+            x = x + dt * dphi_dt
+            t = t + dt
+            x[:, :, :prompt_len] = 0
+        return x
+    type(cfm).inference = inference; type(cfm).solve_euler = solve_euler
 
     mu_t = torch.from_numpy(st["mu"]).to(dev)
     Q_t = torch.from_numpy(st["Q"]).to(dev) if st["Q"] is not None else None
