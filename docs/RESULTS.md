@@ -1,4 +1,4 @@
-# Results so far (2026-10-29 to 2026-11-05)
+# Results so far (2026-10-29 to 2026-11-07)
 
 What has been done on the research side of the voice-anonymization work and what came out of it. Written for
 someone who has not followed the sessions. `docs/HANDOVER.md` is the operational handover (paths, jobs, practicalities);
@@ -111,6 +111,48 @@ calibration, InfoNCE batches over distinct utterances, KSG per seed; the rerun h
 Remaining footnotes: the target-conditioned rows carry a constant -1.4 nats offset from a biased plug-in entropy
 (their accuracies are unchanged, so the target voice tells nothing about the source); MLP probes under-train on the
 outputs and sit below the linear ones; InfoNCE nulls use 10 shuffles (p >= 0.09).
+
+## What the experiments are for: the claim and its six hypotheses (added 2026-11-07)
+
+The framework document (`docs/voice_anonymization_framework.pdf`, Section 6, diagnostics D1-D18) defends one claim:
+
+> In a frozen voice-conversion pipeline, source-speaker leakage enters through a single channel, the content
+> condition; inside that channel it is concentrated in a low-dimensional, nearly linear coordinate; therefore a
+> training-free mechanism that contracts and noises that coordinate can bound the leakage by construction, with the
+> bound transferring to the audio, while the remaining leakage is a floor set by the task, not by the method.
+
+The diagnostics test the preconditions of that claim. Each row is one hypothesis; the experiments in the third
+column are the tests; the last column is the status on 2026-11-07.
+
+| hypothesis | what must be true | tested by | status |
+|---|---|---|---|
+| H1 Locus | The sampler, the starting noise and the target add no source identity; everything comes through the condition | D1, D2, D3 | Supported: straight path (exp. 2), identity in place by step 6 and timbre gone from step 0 (exp. 3), residue is content-side (residual check) |
+| H2 Structure | Identity in the condition sits in a low-dimensional, approximately flat subspace of the utterance mean (Assumptions A5, A6) | D4, D15, D16 | D4 and D15 running (condition audit, cluster job 16429); D16 only if D15 shows curvature |
+| H3 Floor | What the task must preserve carries an irreducible amount of identity, and that floor can be estimated before anything is built (Theorem 2) | D10, D12, D6 | D10 context part and D6 running (same job); gender part needs speaker gender labels; emotion deferred to another corpus |
+| H4 Feasibility | The frozen generator tolerates perturbation along the removable directions at acceptable utility cost | D7, D14, D18 | Not started; D7 needs the identity directions from D4 |
+| H5 Certification | The chain geometry -> statistics -> estimation holds and is tight: audit <= true leakage <= certificate (Theorem 1) | D9, D8, then P5 | D8 running (same job); D9 is CPU-only synthetic work, not started |
+| H6 Converse | Identity and content are entangled, so no mechanism can beat a frontier (Theorem 3) | D5, D17 | Needs VCTK (crossed design); D17 needs attribute labels |
+
+What a negative result would mean:
+
+- H2 fails (identity spread over the frame dynamics, or strongly curved): the mechanism as drafted (on the mean,
+  linear) bounds a term that is not the leak; the certificate is formally correct and practically empty. This is why
+  D4 runs first and why D15 decides between a flat and a manifold-native mechanism.
+- H3 gives a high floor (e.g. topic alone identifies speakers in conversational data): the achievable privacy on that
+  kind of data is small for every anonymizer, and the contribution shifts from "our mechanism is private" to "here is
+  the limit and how close one can get".
+- H4 fails (the DiT breaks under the perturbation the certificate needs): the frontier is set by utility, not privacy;
+  D7 gives the usable noise range before any privacy claim.
+- H5 is what makes the result a certificate rather than a measurement: every Aspect 1 number is a lower bound (an
+  attacker got this far); only a mechanism with known noise gives an upper bound. D9 checks the bound where the truth
+  is computable; D8 supplies the attackers the certificate must sit above.
+- H6 is the converse: without it a reviewer can say a better method would remove more; Theorem 3 says the
+  entanglement forbids it, and D5 measures the entanglement.
+
+The general point is therefore not "Seed-VC anonymizes well" but: privacy of a voice anonymizer can be certified
+from a geometric constraint, and the task defines the limit. Seed-VC is the instantiation; D1-D18 establish that it
+satisfies the assumptions the theorems need and measure the two quantities no theorem supplies, the floor and the
+generator's tolerance.
 
 ## What this means for the anonymization product
 
