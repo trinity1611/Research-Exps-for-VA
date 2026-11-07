@@ -53,17 +53,17 @@ if has gen; then
   echo; echo "=== generate  $(date -Is)"
   python "$CODE/generate.py" --manifest "$MANIFEST" --pool "$POOL" --out "$OUT" --seedvc-root "$SEEDVC" --profile "$PROFILE" \
       --seeds "$SEEDS" --batch "$BATCH" --steps-grid "$GRID" $([ -n "$LIMIT" ] && echo --limit "$LIMIT") \
-      2>&1 | tee "$OUT/generate.log" | grep -vE 'Warning|warn|it/s'
+      2>&1 | tee "$OUT/generate.log" | grep --line-buffered -vE 'Warning|warn|it/s'
 fi
 if has feat; then
   echo; echo "=== features  $(date -Is)"
   python "$CODE/features.py" --out "$OUT" --manifest "$MANIFEST" --encoders "$ENCODERS" --seedvc-root "$SEEDVC" --noise-control \
-      2>&1 | tee "$OUT/features.log" | grep -vE 'Warning|warn|it/s|not used|newly initialized|should probably'
+      2>&1 | tee "$OUT/features.log" | grep --line-buffered -vE 'Warning|warn|it/s|not used|newly initialized|should probably'
 fi
 if has analyze; then
   echo; echo "=== analyze  $(date -Is)"
   python "$CODE/analyze.py" --out "$OUT" --encoders "$ENCODERS" --n-null "$N_NULL" --n-boot "$N_BOOT" \
-      2>&1 | tee "$OUT/analyze.log" | grep -vE '^    \{'
+      2>&1 | tee "$OUT/analyze.log" | grep --line-buffered -vE '^    \{'
 fi
 echo; du -sh "$OUT/gen" "$OUT/features" 2>/dev/null
 echo "=== done $(date -Is).  $OUT/results/results.csv, mi_vs_t_S.png, mi_vs_t_C.png, leak_vs_util.png"

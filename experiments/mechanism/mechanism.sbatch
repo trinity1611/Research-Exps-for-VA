@@ -47,12 +47,12 @@ if has gen; then
   echo; echo "=== gen  $(date -Is)"
   python "$CODE/sweep.py" gen --manifest "$MANIFEST" --metadata "$A1/metadata.csv" --audit-features "$CA/features.npz" --aspect1-gen "$A1/gen" \
       --out "$OUT" --seedvc-root "$SEEDVC" --profile "$PROFILE" --per-speaker "$PER_SPEAKER" --gammas "$GAMMAS" --sigmas "$SIGMAS" --lda-k "$LDA_K" \
-      $([ -n "$LIMIT" ] && echo --limit "$LIMIT") 2>&1 | tee "$OUT/gen.log" | grep -vE 'Warning|warn|it/s'
+      $([ -n "$LIMIT" ] && echo --limit "$LIMIT") 2>&1 | tee "$OUT/gen.log" | grep --line-buffered -vE 'Warning|warn|it/s'
 fi
 if has feat; then
   echo; echo "=== feat  $(date -Is)"
   python "$CODE/sweep.py" feat --manifest "$MANIFEST" --out "$OUT" --seedvc-root "$SEEDVC" \
-      2>&1 | tee "$OUT/feat.log" | grep -vE 'Warning|warn|it/s|not used|newly initialized|should probably'
+      2>&1 | tee "$OUT/feat.log" | grep --line-buffered -vE 'Warning|warn|it/s|not used|newly initialized|should probably'
 fi
 if has analyze; then
   echo; echo "=== analyze  $(date -Is)"

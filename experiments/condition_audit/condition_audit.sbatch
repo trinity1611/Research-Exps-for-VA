@@ -43,7 +43,7 @@ if has extract; then
   echo; echo "=== extract  $(date -Is)"
   python "$CODE/extract.py" --manifest "$MANIFEST" --out "$OUT" --seedvc-root "$SEEDVC" --profile "$PROFILE" --cond-dir "$A1" \
       $([ -n "$LIMIT" ] && echo --limit "$LIMIT") $([ -n "$NO_ASR" ] && echo --no-asr) \
-      2>&1 | tee "$OUT/extract.log" | grep -vE 'Warning|warn|it/s|not used|newly initialized|should probably'
+      2>&1 | tee "$OUT/extract.log" | grep --line-buffered -vE 'Warning|warn|it/s|not used|newly initialized|should probably'
 fi
 if has analyze; then
   echo; echo "=== analyze  $(date -Is)"
