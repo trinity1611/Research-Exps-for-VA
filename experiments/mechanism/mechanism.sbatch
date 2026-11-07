@@ -56,7 +56,7 @@ if has feat; then
 fi
 if has analyze; then
   echo; echo "=== analyze  $(date -Is)"
-  python "$CODE/analyze.py" --out "$OUT" --n-boot "$N_BOOT" --epochs "$EPOCHS" 2>&1 | tee "$OUT/analyze.log"
+  python "$CODE/analyze.py" --out "$OUT" --aspect1 "$A1" --n-boot "$N_BOOT" --epochs "$EPOCHS" 2>&1 | tee "$OUT/analyze.log"
 fi
 echo; du -sh "$OUT/gen" 2>/dev/null
 echo "=== done $(date -Is).  $OUT/results/summary.md, sweep.csv, leak_vs_utility.png"
