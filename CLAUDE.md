@@ -63,7 +63,9 @@ the README of the experiment folder you work in.
   Data on the cluster: `~/anon-bench/trajectory/{runs,pairs_combined,pairs_combined_2}`.
 - `experiments/aspect1_mi/`: experiment 3: per-denoising-step mutual information (speaker, content); estimator
   library `mi/`, `tests/`, `results/displace/` (`results` calibrated, `results_v1` first analysis).
-- Reserved for later work, create only when it starts: `experiments/mechanism/` (training-free mechanism on the
-  XLS-R condition, sigma sweep), `experiments/entanglement_vctk/` (crossed design, kappa_ent), `experiments/estimation/`
+- `experiments/condition_audit/`: experiment 4 (framework D4, D6, D10, D15, D8): identity in the content condition.
+- `experiments/mechanism/`: D7 / mechanism sweep: contract-and-noise the condition over a (gamma, sigma) grid, output
+  identity and content vs the certificate term.
+- Reserved for later work, create only when it starts: `experiments/entanglement_vctk/` (crossed design, kappa_ent), `experiments/estimation/`
   (verification / Fano floors vs attackers), `theory/` (proof notes, synthetic E1), `docs/framework/` (the proposal).
 - Result files (csv, json, png, md, txt) are committed; everything heavy is ignored.
