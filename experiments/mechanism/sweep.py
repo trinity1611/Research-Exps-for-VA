@@ -251,7 +251,12 @@ def stage_feat(a):
         enc = {"wavlm": lambda: Wavlm(dev), "campplus": lambda: Campplus(dev, a.seedvc_root), "whisper": lambda: Whisper(dev)}[name]()
         emb = np.zeros((len(rows), enc.dim), np.float32)
         for i, r in enumerate(rows):
-            emb[i] = enc(load_wav16(r["wav"]))
+            x = load_wav16(r["wav"])
+            try:
+                emb[i] = enc(np.ascontiguousarray(np.asarray(x, dtype=np.float32).reshape(-1)))
+            except Exception as e:
+                print(f"ERROR at row {i} ({r['kind']} {r['config']} {r['utt_id']}): wav={r['wav']} loaded type={type(x).__name__} shape={getattr(x, 'shape', None)}: {e}", flush=True)
+                raise
             if (i + 1) % 2000 == 0:
                 print(f"    {name} [{i + 1}/{len(rows)}] {(time.time() - t0) / 60:.1f} min", flush=True)
         np.savez(fdir / f"{name}.npz", emb=emb)
