@@ -233,6 +233,16 @@ def stage_gen(a):
     print(f"done: {n_done} utterances generated, {skipped} skipped; GPU peak {torch.cuda.max_memory_allocated() / 2 ** 30:.1f} GB" if dev.type == "cuda" else f"done: {n_done} generated, {skipped} skipped")
 
 
+def embed(enc, x):
+    """One clip through an encoder of aspect1_mi/features.py, whichever interface it has (a list of clips -> (n, dim),
+    the batched version that ran on the cluster; or one clip -> (dim,))."""
+    try:
+        out = np.asarray(enc([x]))
+    except Exception:
+        return np.asarray(enc(x), dtype=np.float32).reshape(-1)
+    return (out[0] if out.ndim == 2 else out).astype(np.float32).reshape(-1)
+
+
 def stage_feat(a):
     import torch
     from features import Wavlm, Campplus, Whisper
@@ -253,7 +263,7 @@ def stage_feat(a):
         for i, r in enumerate(rows):
             x = load_wav16(r["wav"])
             try:
-                emb[i] = enc(np.ascontiguousarray(np.asarray(x, dtype=np.float32).reshape(-1)))
+                emb[i] = embed(enc, np.ascontiguousarray(np.asarray(x, dtype=np.float32).reshape(-1)))
             except Exception as e:
                 print(f"ERROR at row {i} ({r['kind']} {r['config']} {r['utt_id']}): wav={r['wav']} loaded type={type(x).__name__} shape={getattr(x, 'shape', None)}: {e}", flush=True)
                 raise
