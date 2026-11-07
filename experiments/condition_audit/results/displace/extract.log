@@ -1,0 +1,26 @@
+Warning: Skipped loading some keys due to shape mismatch: {'estimator.input_pos'}
+cfm loaded
+Warning: Skipped loading some keys due to shape mismatch: {'extra_codebook_mask_tokens.0', 'extra_codebooks.0.weight'}
+length_regulator loaded
+Loading weights from nvidia/bigvgan_v2_22khz_80band_fmax8k_256x
+Removing weight norm...
+1796 utterances; engine semantic = XLS-R layer ?; asr=whisper-small hi; 0 transcripts resumed; device cuda
+[100/1796] 1.8 min, left ~30 min
+[200/1796] 3.3 min, left ~26 min
+[300/1796] 4.9 min, left ~24 min
+[400/1796] 6.5 min, left ~23 min
+[500/1796] 8.1 min, left ~21 min
+[600/1796] 9.7 min, left ~19 min
+[700/1796] 11.3 min, left ~18 min
+[800/1796] 12.9 min, left ~16 min
+[900/1796] 14.3 min, left ~14 min
+[1000/1796] 15.7 min, left ~13 min
+[1100/1796] 17.4 min, left ~11 min
+[1200/1796] 19.4 min, left ~10 min
+[1300/1796] 21.1 min, left ~8 min
+[1400/1796] 22.7 min, left ~6 min
+[1500/1796] 24.5 min, left ~5 min
+[1600/1796] 26.3 min, left ~3 min
+[1700/1796] 27.9 min, left ~2 min
+[1796/1796] 29.3 min, left ~0 min
+written: /home/udit.tatia/anon-bench/condition_audit/runs/displace/features.npz, /home/udit.tatia/anon-bench/condition_audit/runs/displace/table.csv, /home/udit.tatia/anon-bench/condition_audit/runs/displace/H (1796 files), /home/udit.tatia/anon-bench/condition_audit/runs/displace/asr.jsonl

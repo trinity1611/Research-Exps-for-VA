@@ -1,4 +1,4 @@
-# Results so far (2026-10-29 to 2026-11-07)
+# Results so far (2026-10-29 to 2026-11-07, four experiments)
 
 What has been done on the research side of the voice-anonymization work and what came out of it. Written for
 someone who has not followed the sessions. `docs/HANDOVER.md` is the operational handover (paths, jobs, practicalities);
@@ -112,6 +112,41 @@ Remaining footnotes: the target-conditioned rows carry a constant -1.4 nats offs
 (their accuracies are unchanged, so the target voice tells nothing about the source); MLP probes under-train on the
 outputs and sit below the linear ones; InfoNCE nulls use 10 shuffles (p >= 0.09).
 
+## Experiment 4: how much identity is in the content condition, and where (condition audit, done 2026-11-07)
+
+`experiments/condition_audit/` (framework D4, D6, D10, D15, D8; full tables in its README). For the 1,796 source
+utterances of experiment 3, the content condition the generator receives (XLS-R layer 12, 1024-d per frame; and the
+DiT's length-regulated 384-d condition mu) was probed for speaker identity with the same calibrated probes and the
+same splits as experiment 3.
+
+| what is probed | speaker accuracy (120 speakers) | nats |
+|---|---|---|
+| CAM++ on the original audio (exp. 3) | 92.6 % | 4.50 |
+| utterance mean of the XLS-R condition | 78.3 % | 3.89 |
+| DiT condition mu (mean + std) | 79.0 % | 4.01 |
+| std over frames / frame-to-frame change of the condition | 59.6 % / 63.8 % | 3.05 / 3.30 |
+| CAM++ on the anonymized output (exp. 3) | 19.2 % | 1.16 |
+| duration, pause fraction, speaking rate only | 0.2-1.7 % | <= 0.17 |
+
+Findings:
+
+1. **The condition carries nearly the whole identity into the generator, and the frozen generator discards most of
+   it.** 3.9 nats go in, 1.2 come out. What the mechanism has to remove is the part the DiT passes, not all 3.9.
+2. **Identity is redundant across the condition, not concentrated in a subspace.** LDA directions fitted on 84
+   speakers transfer to 36 unseen ones (32 directions: 3.26 of 3.29 nats), but the orthogonal residual keeps 3.24
+   nats at every k. A mechanism that contracts a k-dimensional identity coordinate removes nothing; it must act on
+   the whole mean outside the protected directions (Section 5.2 of the framework, R_tau = full complement of P_C).
+3. **The geometry is curved.** Intrinsic dimension about 21-27, but 209 principal components for 90 % of the
+   variance, and local tangents rotate by 53 deg between neighbouring points (random: 85 deg, flat: 0). By the
+   framework's rule this triggers D16.
+4. **Duration and speaking rate carry no identity**; the rate branch of the mechanism is unnecessary on this data.
+5. **The attacker baselines** (D8): cosine verification with the independent WavLM-SV is at chance on the outputs
+   (EER 48 %, top-1 1.6 %), CAM++ slightly below (EER 42 %, top-1 3 %). The trained probe of experiment 3 (19 %) is
+   the stronger attacker.
+6. **Not usable yet:** the transcript-only context floor (D10) came out at zero, but Whisper-small produced
+   repetition-loop transcripts for 35 % of the Hindi clips; it has to be redone with a decoding guard or a larger
+   model before the floor is believed.
+
 ## What the experiments are for: the claim and its six hypotheses (added 2026-11-07)
 
 The framework document (`docs/framework/voice_anonymization_framework.pdf`, Section 6, diagnostics D1-D18) defends one claim:
@@ -127,10 +162,10 @@ column are the tests; the last column is the status on 2026-11-07.
 | hypothesis | what must be true | tested by | status |
 |---|---|---|---|
 | H1 Locus | The sampler, the starting noise and the target add no source identity; everything comes through the condition | D1, D2, D3 | Supported: straight path (exp. 2), identity in place by step 6 and timbre gone from step 0 (exp. 3), residue is content-side (residual check) |
-| H2 Structure | Identity in the condition sits in a low-dimensional, approximately flat subspace of the utterance mean (Assumptions A5, A6) | D4, D15, D16 | D4 and D15 running (condition audit, cluster job 16429); D16 only if D15 shows curvature |
-| H3 Floor | What the task must preserve carries an irreducible amount of identity, and that floor can be estimated before anything is built (Theorem 2) | D10, D12, D6 | D10 context part and D6 running (same job); gender part needs speaker gender labels; emotion deferred to another corpus |
-| H4 Feasibility | The frozen generator tolerates perturbation along the removable directions at acceptable utility cost | D7, D14, D18 | Not started; D7 needs the identity directions from D4 |
-| H5 Certification | The chain geometry -> statistics -> estimation holds and is tight: audit <= true leakage <= certificate (Theorem 1) | D9, D8, then P5 | D8 running (same job); D9 is CPU-only synthetic work, not started |
+| H2 Structure | Identity in the condition sits in a low-dimensional, approximately flat subspace of the utterance mean (Assumptions A5, A6) | D4, D15, D16 | Half refuted (exp. 4): a 32-d coordinate captures the identity of unseen speakers, but the orthogonal residual keeps it too (redundant, not concentrated); the set is curved (tangents rotate 53 deg between neighbours). D16 triggered |
+| H3 Floor | What the task must preserve carries an irreducible amount of identity, and that floor can be estimated before anything is built (Theorem 2) | D10, D12, D6 | D6 done: duration and rate carry nothing (<= 0.17 nats). D10 context part inconclusive: Whisper-small Hindi transcripts degenerate on 35 % of clips, redo. Gender part needs speaker gender labels; emotion deferred to another corpus |
+| H4 Feasibility | The frozen generator tolerates perturbation along the removable directions at acceptable utility cost | D7, D14, D18 | Next: D7 as a (gamma, sigma) sweep of the whole-mean contraction (exp. 4 showed a subspace is not enough), measuring output identity and content |
+| H5 Certification | The chain geometry -> statistics -> estimation holds and is tight: audit <= true leakage <= certificate (Theorem 1) | D9, D8, then P5 | D8 done: cosine ASV on the outputs at chance for WavLM-SV (EER 48 %), slightly below for CAM++ (EER 42 %); D9 not started |
 | H6 Converse | Identity and content are entangled, so no mechanism can beat a frontier (Theorem 3) | D5, D17 | Needs VCTK (crossed design); D17 needs attribute labels |
 
 What a negative result would mean:
@@ -168,6 +203,7 @@ generator's tolerance.
 | what | repo | cluster / laptop |
 |---|---|---|
 | trajectory code and results | `experiments/trajectory/`, `experiments/trajectory/results/` | `~/anon-bench/trajectory/{runs,pairs_combined,pairs_combined_2}` (data) |
+| condition audit code and results | `experiments/condition_audit/`, `experiments/condition_audit/results/displace/` | `~/anon-bench/condition_audit/runs/displace` (H/ 1.1 GB) |
 | Aspect 1 code and results | `experiments/aspect1_mi/`, `experiments/aspect1_mi/results/displace/` | `~/anon-bench/aspect1_mi/runs/displace` (gen, features); laptop `C:\anon-local\aspect1_displace` (features) |
 | pipeline snapshot the experiments run on | `pipeline/` (Voice-Anonymization 370b5c9) | |
 | handover, jobs, practicalities | `docs/HANDOVER.md` | |

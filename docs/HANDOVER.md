@@ -3,7 +3,7 @@
 Research work for the voice-anonymization publication, separate from the pipeline/benchmark work (repo
 trinity1611/Voice-Anonymization). This repo: trinity1611/Research-Exps-for-VA. Large data stays outside the repo and
 outside OneDrive: laptop `C:\anon-local`, cluster `~/anon-bench`. Setup and cluster usage: `CLAUDE.md`.
-Written 2026-11-04, last updated 2026-11-05 (Aspect 1 DISPLACE results read; all three experiments done).
+Written 2026-11-04, last updated 2026-11-07 (condition audit done; four experiments).
 
 **Starting a new Claude Code session**: clone this repo anywhere (the pipeline code it needs is in `pipeline/`), open
 Claude Code in the clone, and say "read README.md and continue with <task>". Section 0 lists what is pending.
@@ -20,6 +20,7 @@ Summary of all results so far, written for a new reader: `docs/RESULTS.md`. Repo
 | 15901 (replaced 15893) | MSE per step of trajectory set 1 (3,800 conversions) | `~/anon-bench/trajectory/pairs_combined/mse/` | DONE 18:00; results in `trajectory/results/pairs_combined/` |
 | 15902 (replaced 15896) | Aspect 1 MI run on DISPLACE (manifest, 5,388 outputs, features, analysis), 12 h limit | `~/anon-bench/aspect1_mi/runs/displace/` | DONE 22:43 (n3); first analysis had estimator defects (kept as `results_v1`) |
 | 16117 | Aspect 1 analysis stage rerun with calibrated estimators (`STAGES=analyze`) | `~/anon-bench/aspect1_mi/runs/displace/results/` | DONE 2026-11-05 14:26; results in `experiments/aspect1_mi/results/displace/results/`, read in `experiments/aspect1_mi/README.md` section 7 |
+| 16428 / 16429 | condition audit (framework D4, D6, D10, D15, D8): smoke (60 utts) and full run | `~/anon-bench/condition_audit/runs/{smoke,displace}/` | DONE 2026-11-07 11:06; results in `experiments/condition_audit/results/displace/`, read in its README and `docs/RESULTS.md` experiment 4 |
 
 Interpretation of the MSE curves: `experiments/trajectory/results/README.md` (straight path, noise-independent, spread = loudness).
 Storage incident 2026-11-04 afternoon: the NFS home (`192.168.1.254:/home`, 6-8 MB/s, latency-bound) stalled all
@@ -196,6 +197,10 @@ cannot separate these, a crossed VCTK run can). Content is complete from step 0 
 
 ## 8. Open points
 
+- Condition audit done (2026-11-07, `experiments/condition_audit/`): identity is redundant across the whole condition
+  (a k-dim coordinate leaves 3.2 nats in the residual) and the set is curved; next is D7 as a (gamma, sigma) sweep of the
+  whole-mean contraction; D10 context floor must be redone (Whisper-small Hindi transcripts degenerate on 35 % of clips);
+  D15 local-tangent noise floor not computed yet. Framework PDF: `docs/framework/`.
 - Aspect 1 on DISPLACE is read (section 7). The speaker residue in the outputs is content-channel information; to
   tell topic from prosody/speaking rate a crossed design is needed (VCTK, same sentences for every speaker; cost in
   `experiments/aspect1_mi/README.md` section 4). Estimator details to tidy if the numbers go into the paper: `cond = T` I_hat

@@ -1,0 +1,7 @@
+encoder,attack,n_trials,n_speakers,eer,top1
+wavlm,orig->orig (reference),539,120,0.08534322820037107,0.5769944341372912
+wavlm,"ignorant: enrol orig, trial anon",1617,120,0.481756338899196,0.016079158936301793
+wavlm,"lazy-informed: enrol anon, trial anon",1617,120,0.48546691403834263,0.015460729746444033
+campplus,orig->orig (reference),539,120,0.018272243962520068,0.9128014842300557
+campplus,"ignorant: enrol orig, trial anon",1617,120,0.4272462231645905,0.02906617192331478
+campplus,"lazy-informed: enrol anon, trial anon",1617,120,0.41063698206555355,0.0383426097711812

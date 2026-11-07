@@ -1,0 +1,2 @@
+n,dim,pca_dims_90,pca_dims_95,twonn_id,mle_id_k10_20,twonn_id_speaker_means,within_between_ratio_R,local_dim90_median,local_dim90_p10,local_dim90_p90,tangent_rotation_neighbours_deg_mean,tangent_rotation_neighbours_deg_p90,tangent_vs_global_lda_deg_mean,tangent_vs_global_pca_deg_mean,random_subspace_vs_pca_deg,d_loc,k_neighbours,n_anchors
+1796,1024,209,346,27.288714457626618,21.119617118177498,12.235065580518166,1.4006149768829346,35.0,34.0,36.0,53.36149978637695,61.38417854309082,72.60320860000837,55.64653778076172,85.31150500226376,10,50,150
