@@ -1,0 +1,18 @@
+9000 rows (8400 outputs + 600 originals), device cuda
+    campplus [2000/9000] 0.8 min
+    campplus [4000/9000] 1.5 min
+    campplus [6000/9000] 2.1 min
+    campplus [8000/9000] 2.8 min
+campplus: (9000, 192) in 3.1 min
+/home/udit.tatia/anon-bench/envs/seedvc/lib/python3.10/site-packages/torch/nn/functional.py:5962: UserWarning: Support for mismatched key_padding_mask and attn_mask is deprecated. Use same type for both instead.
+  warnings.warn(
+    wavlm [2000/9000] 0.5 min
+    wavlm [4000/9000] 0.9 min
+    wavlm [6000/9000] 1.2 min
+    wavlm [8000/9000] 1.6 min
+wavlm: (9000, 512) in 1.8 min
+    whisper [2000/9000] 0.7 min
+    whisper [4000/9000] 1.3 min
+    whisper [6000/9000] 2.0 min
+    whisper [8000/9000] 2.6 min
+whisper: (9000, 768) in 2.9 min

@@ -1,4 +1,4 @@
-# Results so far (2026-10-29 to 2026-11-07, four experiments)
+# Results so far (2026-10-29 to 2026-11-07, five experiments)
 
 What has been done on the research side of the voice-anonymization work and what came out of it. Written for
 someone who has not followed the sessions. `docs/HANDOVER.md` is the operational handover (paths, jobs, practicalities);
@@ -147,6 +147,32 @@ Findings:
    repetition-loop transcripts for 35 % of the Hindi clips; it has to be redone with a decoding guard or a larger
    model before the floor is believed.
 
+## Experiment 5: the mechanism on the condition mean (D7 sweep, done 2026-11-07)
+
+`experiments/mechanism/` (full table in its README). The framework's Step 2 mechanism, `h' = h - (1 - gamma)(hbar - mu)
++ sigma eps`, applied to the content condition of 600 utterances over gamma in {1, 0.5, 0} x sigma in {0, 0.5, 1, 2}
+times the natural spread of the utterance means, plus a 32-direction subspace control; same targets and noise as
+experiment 3, all configurations of one utterance in one DiT batch. Identity and content in the outputs measured with
+probes trained on the experiment-3 outputs (the baseline reproduces experiment 3: 1.46 nats, 25 %).
+
+| configuration | identity left, CAM++ probe | content kept, Whisper InfoNCE (cap 5.19) |
+|---|---|---|
+| unchanged pipeline | 1.46 nats (25.0 %) | 4.93 |
+| mean half contracted, noise 2x spread | 1.25 (20.0 %) | 4.78 |
+| mean fully replaced by the population mean | 1.27 (23.9 %) | 4.96 |
+| mean replaced + noise 2x spread | 1.16 (18.3 %) | 4.89 |
+| 32-d identity subspace removed (control) | 1.40 (25.0 %) | 4.95 |
+
+Findings:
+
+1. **Contracting the condition mean does almost nothing to the leak**: 1.46 -> 1.16 nats at the strongest setting,
+   CIs overlapping; the subspace control changes nothing. The generator does not use the mean: content and the
+   output's similarity to the source voice (0.41) are unchanged in every row.
+2. **The leak is in the frame-level dynamics of the condition**, which the mechanism keeps by design. The certificate
+   of the framework's Section 5.2 bounds a coordinate that contributes nothing to the leak, and its values (17-218
+   nats) are vacuous in 1,024 dimensions. The mechanism has to act on the frame sequence and trade some content.
+3. D7's utility question is answered trivially: the frozen DiT tolerates any perturbation of the mean.
+
 ## What the experiments are for: the claim and its six hypotheses (added 2026-11-07)
 
 The framework document (`docs/framework/voice_anonymization_framework.pdf`, Section 6, diagnostics D1-D18) defends one claim:
@@ -162,9 +188,9 @@ column are the tests; the last column is the status on 2026-11-07.
 | hypothesis | what must be true | tested by | status |
 |---|---|---|---|
 | H1 Locus | The sampler, the starting noise and the target add no source identity; everything comes through the condition | D1, D2, D3 | Supported: straight path (exp. 2), identity in place by step 6 and timbre gone from step 0 (exp. 3), residue is content-side (residual check) |
-| H2 Structure | Identity in the condition sits in a low-dimensional, approximately flat subspace of the utterance mean (Assumptions A5, A6) | D4, D15, D16 | Half refuted (exp. 4): a 32-d coordinate captures the identity of unseen speakers, but the orthogonal residual keeps it too (redundant, not concentrated); the set is curved (tangents rotate 53 deg between neighbours). D16 triggered |
+| H2 Structure | Identity in the condition sits in a low-dimensional, approximately flat subspace of the utterance mean (Assumptions A5, A6) | D4, D15, D16 | Refuted for the mean (exp. 4 + 5: the identity the generator passes is not in the utterance mean at all; removing the mean leaves 1.2 of 1.5 nats). Exp. 4 also: a 32-d coordinate captures the identity of unseen speakers, but the orthogonal residual keeps it too (redundant, not concentrated); the set is curved (tangents rotate 53 deg between neighbours). D16 triggered |
 | H3 Floor | What the task must preserve carries an irreducible amount of identity, and that floor can be estimated before anything is built (Theorem 2) | D10, D12, D6 | D6 done: duration and rate carry nothing (<= 0.17 nats). D10 context part inconclusive: Whisper-small Hindi transcripts degenerate on 35 % of clips, redo. Gender part needs speaker gender labels; emotion deferred to another corpus |
-| H4 Feasibility | The frozen generator tolerates perturbation along the removable directions at acceptable utility cost | D7, D14, D18 | Next: D7 as a (gamma, sigma) sweep of the whole-mean contraction (exp. 4 showed a subspace is not enough), measuring output identity and content |
+| H4 Feasibility | The frozen generator tolerates perturbation along the removable directions at acceptable utility cost | D7, D14, D18 | Trivially true for the condition mean (exp. 5: no content loss at any setting), because the generator does not use the mean; the real test moves to frame-level mechanisms (D7b) |
 | H5 Certification | The chain geometry -> statistics -> estimation holds and is tight: audit <= true leakage <= certificate (Theorem 1) | D9, D8, then P5 | D8 done: cosine ASV on the outputs at chance for WavLM-SV (EER 48 %), slightly below for CAM++ (EER 42 %); D9 not started |
 | H6 Converse | Identity and content are entangled, so no mechanism can beat a frontier (Theorem 3) | D5, D17 | Needs VCTK (crossed design); D17 needs attribute labels |
 
@@ -204,6 +230,7 @@ generator's tolerance.
 |---|---|---|
 | trajectory code and results | `experiments/trajectory/`, `experiments/trajectory/results/` | `~/anon-bench/trajectory/{runs,pairs_combined,pairs_combined_2}` (data) |
 | condition audit code and results | `experiments/condition_audit/`, `experiments/condition_audit/results/displace/` | `~/anon-bench/condition_audit/runs/displace` (H/ 1.1 GB) |
+| mechanism sweep code and results | `experiments/mechanism/`, `experiments/mechanism/results/displace/` | `~/anon-bench/mechanism/runs/displace` (gen/ 1.6 GB) |
 | Aspect 1 code and results | `experiments/aspect1_mi/`, `experiments/aspect1_mi/results/displace/` | `~/anon-bench/aspect1_mi/runs/displace` (gen, features); laptop `C:\anon-local\aspect1_displace` (features) |
 | pipeline snapshot the experiments run on | `pipeline/` (Voice-Anonymization 370b5c9) | |
 | handover, jobs, practicalities | `docs/HANDOVER.md` | |

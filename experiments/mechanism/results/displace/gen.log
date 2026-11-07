@@ -1,0 +1,49 @@
+600 utterances (5 per speaker), 14 configurations; tau = 0.0278 (RMS spread of hbar over 1256 training utterances of 84 speakers)
+    all_g1_s0      basis=all gamma=1    sigma=0.0000 (0 tau)  certificate inf nats
+    all_g1_s0.5    basis=all gamma=1    sigma=0.0139 (0.5 tau)  certificate 218.21 nats
+    all_g1_s1      basis=all gamma=1    sigma=0.0278 (1 tau)  certificate 100.79 nats
+    all_g1_s2      basis=all gamma=1    sigma=0.0555 (2 tau)  certificate 43.41 nats
+    all_g0.5_s0    basis=all gamma=0.5  sigma=0.0000 (0 tau)  certificate inf nats
+    all_g0.5_s0.5  basis=all gamma=0.5  sigma=0.0139 (0.5 tau)  certificate 100.79 nats
+    all_g0.5_s1    basis=all gamma=0.5  sigma=0.0278 (1 tau)  certificate 43.41 nats
+    all_g0.5_s2    basis=all gamma=0.5  sigma=0.0555 (2 tau)  certificate 17.24 nats
+    all_g0_s0      basis=all gamma=0    sigma=0.0000 (0 tau)  certificate 0.00 nats
+    all_g0_s0.5    basis=all gamma=0    sigma=0.0139 (0.5 tau)  certificate 0.00 nats
+    all_g0_s1      basis=all gamma=0    sigma=0.0278 (1 tau)  certificate 0.00 nats
+    all_g0_s2      basis=all gamma=0    sigma=0.0555 (2 tau)  certificate 0.00 nats
+    lda32_g0_s0    basis=lda gamma=0    sigma=0.0000 (0 tau)  certificate 0.00 nats
+    lda32_g0_s1    basis=lda gamma=0    sigma=0.0278 (1 tau)  certificate 0.00 nats
+Warning: Skipped loading some keys due to shape mismatch: {'estimator.input_pos'}
+cfm loaded
+Warning: Skipped loading some keys due to shape mismatch: {'extra_codebooks.0.weight', 'extra_codebook_mask_tokens.0'}
+length_regulator loaded
+Loading weights from nvidia/bigvgan_v2_22khz_80band_fmax8k_256x
+Removing weight norm...
+[25/600] 15.0 min (36.05 s per utterance x 14 configs), left ~345 min
+[50/600] 16.2 min (19.41 s per utterance x 14 configs), left ~178 min
+[75/600] 17.2 min (13.75 s per utterance x 14 configs), left ~120 min
+[100/600] 18.2 min (10.89 s per utterance x 14 configs), left ~91 min
+[125/600] 19.1 min (9.19 s per utterance x 14 configs), left ~73 min
+[150/600] 20.0 min (8.01 s per utterance x 14 configs), left ~60 min
+[175/600] 21.0 min (7.18 s per utterance x 14 configs), left ~51 min
+[200/600] 21.9 min (6.56 s per utterance x 14 configs), left ~44 min
+[225/600] 22.7 min (6.06 s per utterance x 14 configs), left ~38 min
+[250/600] 23.6 min (5.67 s per utterance x 14 configs), left ~33 min
+[275/600] 24.5 min (5.35 s per utterance x 14 configs), left ~29 min
+[300/600] 25.4 min (5.07 s per utterance x 14 configs), left ~25 min
+[325/600] 26.2 min (4.84 s per utterance x 14 configs), left ~22 min
+[350/600] 27.1 min (4.65 s per utterance x 14 configs), left ~19 min
+[375/600] 28.0 min (4.48 s per utterance x 14 configs), left ~17 min
+[400/600] 28.9 min (4.33 s per utterance x 14 configs), left ~14 min
+[425/600] 29.7 min (4.20 s per utterance x 14 configs), left ~12 min
+min value is  tensor(-1.0114, device='cuda:0')
+max value is  tensor(1.0057, device='cuda:0')
+[450/600] 30.7 min (4.09 s per utterance x 14 configs), left ~10 min
+[475/600] 31.5 min (3.98 s per utterance x 14 configs), left ~8 min
+[500/600] 32.5 min (3.90 s per utterance x 14 configs), left ~6 min
+[525/600] 33.4 min (3.82 s per utterance x 14 configs), left ~5 min
+[550/600] 34.2 min (3.74 s per utterance x 14 configs), left ~3 min
+[575/600] 35.1 min (3.67 s per utterance x 14 configs), left ~2 min
+[600/600] 36.0 min (3.60 s per utterance x 14 configs), left ~0 min
+baseline vs Aspect 1 r0 step-30 output on 600 utterances: max |dy| median 0.00217 (max 0.0517), waveform corr median 1.0000
+done: 600 utterances generated, 0 skipped; GPU peak 3.5 GB

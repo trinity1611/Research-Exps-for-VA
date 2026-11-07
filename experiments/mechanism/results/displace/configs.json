@@ -1,0 +1,124 @@
+{
+ "configs": [
+  {
+   "name": "all_g1_s0",
+   "basis": "all",
+   "gamma": 1.0,
+   "sigma_rel": 0.0,
+   "sigma_abs": 0.0,
+   "certificate_nats": Infinity
+  },
+  {
+   "name": "all_g1_s0.5",
+   "basis": "all",
+   "gamma": 1.0,
+   "sigma_rel": 0.5,
+   "sigma_abs": 0.013886249614349176,
+   "certificate_nats": 218.21047993831849
+  },
+  {
+   "name": "all_g1_s1",
+   "basis": "all",
+   "gamma": 1.0,
+   "sigma_rel": 1.0,
+   "sigma_abs": 0.02777249922869835,
+   "certificate_nats": 100.78900127213524
+  },
+  {
+   "name": "all_g1_s2",
+   "basis": "all",
+   "gamma": 1.0,
+   "sigma_rel": 2.0,
+   "sigma_abs": 0.0555449984573967,
+   "certificate_nats": 43.413456008569
+  },
+  {
+   "name": "all_g0.5_s0",
+   "basis": "all",
+   "gamma": 0.5,
+   "sigma_rel": 0.0,
+   "sigma_abs": 0.0,
+   "certificate_nats": Infinity
+  },
+  {
+   "name": "all_g0.5_s0.5",
+   "basis": "all",
+   "gamma": 0.5,
+   "sigma_rel": 0.5,
+   "sigma_abs": 0.013886249614349176,
+   "certificate_nats": 100.78900127213524
+  },
+  {
+   "name": "all_g0.5_s1",
+   "basis": "all",
+   "gamma": 0.5,
+   "sigma_rel": 1.0,
+   "sigma_abs": 0.02777249922869835,
+   "certificate_nats": 43.413456008569
+  },
+  {
+   "name": "all_g0.5_s2",
+   "basis": "all",
+   "gamma": 0.5,
+   "sigma_rel": 2.0,
+   "sigma_abs": 0.0555449984573967,
+   "certificate_nats": 17.235701899068054
+  },
+  {
+   "name": "all_g0_s0",
+   "basis": "all",
+   "gamma": 0.0,
+   "sigma_rel": 0.0,
+   "sigma_abs": 0.0,
+   "certificate_nats": 0.0
+  },
+  {
+   "name": "all_g0_s0.5",
+   "basis": "all",
+   "gamma": 0.0,
+   "sigma_rel": 0.5,
+   "sigma_abs": 0.013886249614349176,
+   "certificate_nats": 0.0
+  },
+  {
+   "name": "all_g0_s1",
+   "basis": "all",
+   "gamma": 0.0,
+   "sigma_rel": 1.0,
+   "sigma_abs": 0.02777249922869835,
+   "certificate_nats": 0.0
+  },
+  {
+   "name": "all_g0_s2",
+   "basis": "all",
+   "gamma": 0.0,
+   "sigma_rel": 2.0,
+   "sigma_abs": 0.0555449984573967,
+   "certificate_nats": 0.0
+  },
+  {
+   "name": "lda32_g0_s0",
+   "basis": "lda",
+   "gamma": 0.0,
+   "sigma_rel": 0.0,
+   "sigma_abs": 0.0,
+   "certificate_nats": 0.0
+  },
+  {
+   "name": "lda32_g0_s1",
+   "basis": "lda",
+   "gamma": 0.0,
+   "sigma_rel": 1.0,
+   "sigma_abs": 0.02777249922869835,
+   "certificate_nats": 0.0
+  }
+ ],
+ "tau": 0.02777249922869835,
+ "n_train_speakers": 84,
+ "n_train_utts": 1256,
+ "per_speaker": 5,
+ "n_utts": 600,
+ "split_seed": 0,
+ "noise_base": 50000,
+ "mechanism": "h'_t = h_t - (1-gamma)(hbar-mu) + sigma eps, eps ~ N(0, I) per utterance"
+}
