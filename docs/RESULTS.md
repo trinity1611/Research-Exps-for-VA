@@ -114,7 +114,7 @@ outputs and sit below the linear ones; InfoNCE nulls use 10 shuffles (p >= 0.09)
 
 ## What the experiments are for: the claim and its six hypotheses (added 2026-11-07)
 
-The framework document (`docs/voice_anonymization_framework.pdf`, Section 6, diagnostics D1-D18) defends one claim:
+The framework document (`docs/framework/voice_anonymization_framework.pdf`, Section 6, diagnostics D1-D18) defends one claim:
 
 > In a frozen voice-conversion pipeline, source-speaker leakage enters through a single channel, the content
 > condition; inside that channel it is concentrated in a low-dimensional, nearly linear coordinate; therefore a
